@@ -1,9 +1,13 @@
+"use client";
+
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col row-start-2 items-center ">
+    <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-sans sm:p-20">
+      <main className="row-start-2 flex flex-col items-center">
         <Image
           className="dark:invert"
           src="/logo.svg"
@@ -12,14 +16,17 @@ export default function Home() {
           height={100}
           priority
         />
-        <div className="font-bold text-xl mt-2">KAKU</div>
-        <div className="mb-6 mt-3">你的個人信用卡與優惠管理工具</div>
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+        <div className="mt-2 text-xl font-bold">KAKU</div>
+        <div className="mt-3 mb-6">你的個人信用卡與優惠管理工具</div>
+        <div className="flex flex-col items-center gap-4 sm:flex-row">
           <button
-            disabled
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto disabled:opacity-20"
+            onClick={() => {
+              router.push("/dashboard");
+            }}
+            className="bg-foreground text-background hover:bg-foreground/70 flex cursor-pointer items-center justify-center rounded-full px-4 py-3 text-sm font-medium transition-colors disabled:opacity-20 sm:px-5 sm:text-base"
           >
-            即將推出
+            {/* 即將推出 */}
+            立即體驗
           </button>
         </div>
       </main>
