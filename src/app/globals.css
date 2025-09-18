@@ -119,7 +119,7 @@
 }
 
 body {
-  background: var(--background);
+  /* background: var(--background); */
   color: var(--foreground);
   font-size: 14px;
   font-family: var(--font-line-seed), Arial, Helvetica, sans-serif;
