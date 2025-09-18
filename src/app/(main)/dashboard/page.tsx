@@ -18,7 +18,7 @@ export default async function Page() {
       </div>
 
       <div className="rounded-lg bg-white p-5">
-        <h1 className="mb-3 text-2xl font-semibold">常用標籤</h1>
+        <h1 className="mb-3 text-2xl font-semibold">快速查找</h1>
         <FilterTag />
       </div>
 

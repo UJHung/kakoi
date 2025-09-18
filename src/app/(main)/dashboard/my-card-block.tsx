@@ -1,4 +1,5 @@
 import { MdAddCard } from "react-icons/md";
+import { HiSpeakerphone } from "react-icons/hi";
 import Link from "next/link";
 
 import { getMyCards } from "@/app/actions/cards";
@@ -16,7 +17,16 @@ export default async function MyCardBlock() {
 
   if (displayCards.length === 0) {
     return (
-      <div className="py-8 text-center text-gray-500">尚未新增任何信用卡</div>
+      <div className="flex w-full flex-col items-center gap-3 rounded-md bg-orange-500/10 px-4 py-4 text-center text-orange-500">
+        <HiSpeakerphone size="24" />
+        在開始使用前，請先新增至少一張信用卡
+        <Link
+          href="/cards"
+          className="w-full rounded-md bg-orange-500 px-4 py-2 text-white hover:bg-orange-500/80"
+        >
+          新增卡片
+        </Link>
+      </div>
     );
   }
 
