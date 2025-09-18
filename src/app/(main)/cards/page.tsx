@@ -5,16 +5,26 @@ import { getMyCards } from "@/app/actions/cards";
 import { CardDTO } from "@/app/types/card";
 import Card from "@/components/cards/card";
 import CreateCardDialog from "./create-card-dialog";
+import cardData from "@/data/cards.json";
 
 export default async function CardsPage() {
-  const cards = await getMyCards();
+  const userCards = await getMyCards();
+  const displayCards = userCards.map((userCard) => {
+    const cardDetail = cardData.cards.find(
+      (card) => card.id === userCard.cardId,
+    );
+    return {
+      ...userCard,
+      ...cardDetail,
+    };
+  });
 
   async function refreshCards() {
     "use server";
     revalidatePath("/cards");
   }
 
-  console.log(cards);
+  console.log(displayCards);
 
   return (
     <div className="space-y-6 p-5">
@@ -23,7 +33,7 @@ export default async function CardsPage() {
         <CreateCardDialog onCardCreated={refreshCards} size="icon" />
       </div>
 
-      {cards.length === 0 && (
+      {displayCards.length === 0 && (
         <div className="rounded-xl bg-gray-50 py-12 text-center">
           <TbCreditCard size="36" className="inline-block" />
           <p className="py-3">還沒有卡片，先新增一張吧！</p>
@@ -32,7 +42,7 @@ export default async function CardsPage() {
       )}
 
       <div className="grid gap-4">
-        {cards.map((card: CardDTO) => (
+        {displayCards.map((card: CardDTO) => (
           <Card
             key={card.id}
             id={card.id}
