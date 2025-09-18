@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import { FiInfo } from "react-icons/fi";
-import Image from "next/image";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import ImageLoader from "@/components/image-loader";
 import { Badge } from "@/components/ui/badge";
@@ -16,6 +16,7 @@ import cardData from "@/data/cards.json";
 
 export default function OffersPage() {
   const [results, setResults] = useState<{ card: any; offer: any }[]>([]);
+  const rounter = useRouter();
   const sp = useSearchParams();
   const q = sp.get("q");
   const categorySlug = sp.get("category");
@@ -55,31 +56,29 @@ export default function OffersPage() {
       </div>
 
       <div className="mt-6">
-        <h2 className="text-lg font-medium">搜尋結果</h2>
-
-        <div className="py-1">
-          {q && (
-            <Badge variant="white" size="sm">
-              {q}
-            </Badge>
-          )}
-          {selectedCategory && (
-            <Badge variant="white" size="sm">
-              {selectedCategory.name}
-            </Badge>
-          )}
-        </div>
+        <h2 className="text-xl font-semibold">{q || selectedCategory?.name}</h2>
 
         <ul className="mt-3 space-y-3">
           {results.map((r, i) => (
             <Card key={i} card={r.card} offer={r.offer} />
           ))}
           {results.length === 0 && (
-            <div className="py-8 text-center text-sm text-gray-400">
+            <div className="pt-8 text-center text-sm">
               <BiSearchAlt size="24" className="mb-2 inline" />
               <div>尚無結果</div>
             </div>
           )}
+          <div className="text-center">
+            <Button
+              variant="outline"
+              className="mt-4"
+              onClick={() => {
+                rounter.push("/dashboard");
+              }}
+            >
+              返回首頁
+            </Button>
+          </div>
         </ul>
       </div>
     </div>

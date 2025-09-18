@@ -4,7 +4,6 @@ import { FiMoreHorizontal } from "react-icons/fi";
 import Link from "next/link";
 import { toast } from "sonner";
 
-import DeleteButton from "@/app/(main)/cards/delete-button";
 import { deleteCard } from "@/app/actions/cards";
 import {
   DropdownMenu,
