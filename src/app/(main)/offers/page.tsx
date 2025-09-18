@@ -6,6 +6,7 @@ import { FiInfo } from "react-icons/fi";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 
+import ImageLoader from "@/components/image-loader";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import ExclusionDialog from "@/app/(main)/offers/exclusion-dialog";
@@ -93,9 +94,17 @@ const Card = ({ card, offer }: { card: any; offer: any }) => {
 
   return (
     <>
-      <li className="relative flex gap-5 rounded-xl bg-white p-4">
-        <Image src={card.cardImage} alt={card.name} width={220} height={126} />
-        <div>
+      <li className="relative grid grid-cols-5 gap-5 rounded-xl bg-white p-4">
+        <div className="col-span-2">
+          <ImageLoader
+            src={card.cardImage}
+            alt={card.name}
+            width={400}
+            height={252}
+            className="rounded-lg object-cover"
+          />
+        </div>
+        <div className="col-span-3">
           <div className="text-lg font-semibold">{card.name}</div>
           <p className="mb-3 text-gray-500">{card.issuer}</p>
           <div className="flex gap-x-1.5">
