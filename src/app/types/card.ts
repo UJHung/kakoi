@@ -20,7 +20,7 @@ export type CardOfferProps = {
 export type OfferProps = CardOfferProps;
 
 export type CardProps = {
-  id: string;
+  cardId: string;
   cardImage?: string;
   issuer: string;
   name: string;
@@ -101,7 +101,7 @@ export type CardPresetProps = {
 };
 
 export function getCardInfo(cardId: string): CardProps | undefined {
-  return CardData.cards.find((card) => card.id === cardId);
+  return CardData.cards.find((card) => card.cardId === cardId);
 }
 
 // 組合用戶卡片和卡片詳細資訊

@@ -2,7 +2,7 @@ import { CardDTO } from "@/app/types/card";
 
 export function cacheCard(card: CardDTO) {
   localStorage.setItem(
-    `kaku.card.${card.id}`,
+    `kaku.card.${card.cardId}`,
     JSON.stringify({ t: Date.now(), card }),
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import { RiDeleteBinLine } from "react-icons/ri";
 import { toast } from "sonner";
 
 import { deleteCard } from "@/app/actions/cards";

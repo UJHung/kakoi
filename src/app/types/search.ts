@@ -63,7 +63,7 @@ export function bestCardFor(
   const kwSet = new Set((txn.keywords || []).map(norm));
 
   for (const card of data.cards) {
-    const level = levelByCardId[card.id] || "";
+    const level = levelByCardId[card.cardId] || "";
     const allOffers = [...(card.offers || []), ...(card.other_benefits || [])];
 
     for (const offer of allOffers) {

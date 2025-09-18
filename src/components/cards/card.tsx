@@ -1,19 +1,10 @@
-import { FiMoreHorizontal } from "react-icons/fi";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 import { getCardInfo } from "@/app/types/card";
 
-import DeleteButton from "@/app/(main)/cards/delete-button";
 import { Badge } from "@/components/ui/badge";
 import ImageLoader from "@/components/image-loader";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import Dropdown from "./dropdown-menu";
 
 export default function Card({
   id,
@@ -66,7 +57,13 @@ export default function Card({
       </div>
       {isDisplayOnly && (
         <div className="absolute top-4 right-4">
-          <DropdownMenu>
+          <Dropdown
+            id={id}
+            linkSwitch={card?.links?.switch}
+            linkOffer={card?.links?.offer}
+            onRefresh={onRefresh}
+          />
+          {/* <DropdownMenu>
             <DropdownMenuTrigger className="cursor-pointer rounded-md border p-2 hover:bg-gray-100">
               <FiMoreHorizontal />
             </DropdownMenuTrigger>
@@ -82,11 +79,11 @@ export default function Card({
                 </Link>
               )}
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
                 {onRefresh && <DeleteButton id={id} onRefresh={onRefresh} />}
               </DropdownMenuItem>
             </DropdownMenuContent>
-          </DropdownMenu>
+          </DropdownMenu> */}
         </div>
       )}
     </div>

@@ -9,7 +9,7 @@ export default async function MyCardBlock() {
   const userCards = await getMyCards();
   const displayCards = userCards.map((userCard) => {
     const cardDetail = cardData.cards.find(
-      (card) => card.id === userCard.cardId,
+      (card) => card.cardId === userCard.cardId,
     );
     return cardDetail ? { ...userCard, ...cardDetail } : null;
   });
@@ -25,7 +25,7 @@ export default async function MyCardBlock() {
       {displayCards.map((card) => {
         if (!card) return null;
         return (
-          <div key={card.id}>
+          <div key={card.cardId}>
             <ImageLoader
               src={card.cardImage}
               alt={`${card.issuer} ${card.name}`}

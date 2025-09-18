@@ -11,7 +11,7 @@ export default async function CardsPage() {
   const userCards = await getMyCards();
   const displayCards = userCards.map((userCard) => {
     const cardDetail = cardData.cards.find(
-      (card) => card.id === userCard.cardId,
+      (card) => card.cardId === userCard.cardId,
     );
     return {
       ...userCard,
@@ -42,10 +42,10 @@ export default async function CardsPage() {
       )}
 
       <div className="grid gap-4">
-        {displayCards.map((card: CardDTO) => (
+        {displayCards.map((card: CardDTO, index: number) => (
           <Card
-            key={card.id}
-            id={card.id}
+            key={index}
+            id={card.cardId}
             isDisplayOnly
             onRefresh={refreshCards}
           />

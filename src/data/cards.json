@@ -101,7 +101,7 @@
   ],
   "cards": [
     {
-      "id": "cathay_cube",
+      "cardId": "cathay_cube",
       "cardImage": "/cards/cathay-cube.png",
       "issuer": "國泰世華",
       "name": "CUBE 卡",
@@ -290,7 +290,7 @@
       }
     },
     {
-      "id": "taishin_richart",
+      "cardId": "taishin_richart",
       "cardImage": "/cards/taishin-richart.png",
       "issuer": "台新銀行",
       "name": "Richart 卡",

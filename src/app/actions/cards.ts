@@ -15,7 +15,7 @@ export async function createUserCard(data: {
       cardId: data.cardId,
       nickname: data.nickname,
       last4: data.last4,
-      profileId: profile.id
+      profileId: profile.id,
     },
   });
   return card;
@@ -30,9 +30,20 @@ export async function getMyCards() {
 }
 
 export async function deleteCard(id: string) {
-  const profile = await getOrCreateGuestProfile();
-  // 防護：只能刪自己的
-  await prisma.userCard.deleteMany({
-    where: { id, profileId: profile.id },
-  });
+  try {
+    const profile = await getOrCreateGuestProfile();
+    // 防護：只能刪自己的
+    const result = await prisma.userCard.deleteMany({
+      where: { cardId: id, profileId: profile.id },
+    });
+
+    if (result.count === 0) {
+      throw new Error("找不到要刪除的卡片或沒有權限刪除");
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error("刪除卡片時發生錯誤:", error);
+    throw error;
+  }
 }

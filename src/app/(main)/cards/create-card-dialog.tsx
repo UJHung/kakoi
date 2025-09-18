@@ -64,7 +64,7 @@ export default function CreateCardDialog({
   }
 
   function selectPreset(card: any) {
-    setValue("cardId", card.id);
+    setValue("cardId", card.cardId);
   }
 
   return (
@@ -93,7 +93,9 @@ export default function CreateCardDialog({
                     {data.cards
                       .filter(
                         (card) =>
-                          !myCards.some((myCard) => myCard.cardId === card.id),
+                          !myCards.some(
+                            (myCard) => myCard.cardId === card.cardId,
+                          ),
                       )
                       .map((card, index) => (
                         <div
@@ -102,9 +104,9 @@ export default function CreateCardDialog({
                           onClick={() => selectPreset(card)}
                         >
                           <Card
-                            id={card.id}
+                            id={card.cardId}
                             className={
-                              watch("cardId") === card.id
+                              watch("cardId") === card.cardId
                                 ? "border-2 border-black"
                                 : "border border-gray-200"
                             }
@@ -114,7 +116,9 @@ export default function CreateCardDialog({
 
                     {data.cards.filter(
                       (card) =>
-                        !myCards.some((myCard) => myCard.cardId === card.id),
+                        !myCards.some(
+                          (myCard) => myCard.cardId === card.cardId,
+                        ),
                     ).length === 0 && (
                       <div className="py-8 text-center text-sm text-gray-400">
                         目前沒有可新增的卡片
