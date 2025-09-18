@@ -22,18 +22,17 @@ enum ProfileType {
 model UserCard {
   id          String   @id @default(cuid())
   profileId   String
-  issuer      String
-  productName String
-  nickname    String?
-  last4       String?
+  cardId      String   // 對應 cards.json 中的 card.id
+  nickname    String?  // 使用者自訂別名
+  last4       String?  // 卡號後四碼
   createdAt   DateTime @default(now())
   // 如果想加「自訂資料」且通用：用 JSON（SQLite / Postgres 都能用）
-  meta        Json?
-
+  meta        Json?    // 使用者個人化設定
   profile     Profile  @relation(fields: [profileId], references: [id])
   offers      CardOffer[]
 
   @@index([profileId])
+  @@index([cardId])  // 方便查詢特定卡片的用戶
 }
 
 model Offer {
@@ -51,29 +50,15 @@ model Offer {
   source       String?   // 來源連結
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
-  merchantId   String?   // 之後要做商店/關鍵字可再補 Merchant 表
 
   // 放進規則或白名單、支付工具限制（JSON 最彈性）
   meta         Json?
-
   cards        CardOffer[]
-}
-
-enum Category {
-  一般
-  餐飲
-  超商
-  量販
-  百貨
-  交通
-  網購
-  海外
-  保費
-  其他
 }
 
 model CardOffer {
   id         String   @id @default(cuid())
+  cardId     String
   userCardId String
   offerId    String
   isActive   Boolean  @default(true)
