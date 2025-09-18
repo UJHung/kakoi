@@ -1,4 +1,3 @@
-// middleware.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
@@ -10,7 +9,6 @@ function newId() {
 export function middleware(req: NextRequest) {
   const res = NextResponse.next();
   const hasGuest = req.cookies.get("guestId");
-
   if (!hasGuest) {
     const id = newId();
     res.cookies.set("guestId", id, {

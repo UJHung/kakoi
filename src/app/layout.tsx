@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { cn } from "@/lib/utils";
 import "./globals.css";
 
 const lineSeed = localFont({
@@ -30,7 +31,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={lineSeed.variable} cz-shortcut-listen="true">
+      <body
+        className={cn(lineSeed.variable, "bg-gray-100")}
+        cz-shortcut-listen="true"
+      >
         {children}
       </body>
     </html>

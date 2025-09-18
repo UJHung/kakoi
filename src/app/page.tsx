@@ -21,7 +21,7 @@ export default function Home() {
         <div className="flex flex-col items-center gap-4 sm:flex-row">
           <button
             onClick={() => {
-              router.push("/dashboard");
+              router.push("/cards");
             }}
             className="bg-foreground text-background hover:bg-foreground/70 flex cursor-pointer items-center justify-center rounded-full px-4 py-3 text-sm font-medium transition-colors disabled:opacity-20 sm:px-5 sm:text-base"
           >
