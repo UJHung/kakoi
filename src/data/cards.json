@@ -1,0 +1,933 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2025-09-17T18:33:05.341499",
+  "categories": [
+    {
+      "slug": "ecommerce",
+      "name": "電商"
+    },
+    {
+      "slug": "dining",
+      "name": "餐飲"
+    },
+    {
+      "slug": "travel",
+      "name": "旅遊/交通"
+    },
+    {
+      "slug": "ott",
+      "name": "串流平台"
+    },
+    {
+      "slug": "selected_merchants",
+      "name": "指定精選商店(超商/量販等)"
+    },
+    {
+      "slug": "mobile_wallet",
+      "name": "行動支付"
+    },
+    {
+      "slug": "convenience",
+      "name": "超商"
+    },
+    {
+      "slug": "grocery_hyper",
+      "name": "量販/超市"
+    },
+    {
+      "slug": "taxi_ridehailing",
+      "name": "計程車/叫車"
+    },
+    {
+      "slug": "parking_carshare",
+      "name": "停車/共享車"
+    },
+    {
+      "slug": "events_ticketing",
+      "name": "展演/售票"
+    },
+    {
+      "slug": "online_courses",
+      "name": "線上課程/電子書"
+    },
+    {
+      "slug": "fashion",
+      "name": "服飾"
+    },
+    {
+      "slug": "mobile_data_esim",
+      "name": "通訊/漫遊"
+    },
+    {
+      "slug": "hotel",
+      "name": "飯店"
+    },
+    {
+      "slug": "ota",
+      "name": "OTA/訂房平台"
+    },
+    {
+      "slug": "specified_hotel",
+      "name": "指定飯店"
+    },
+    {
+      "slug": "airlines",
+      "name": "航空"
+    },
+    {
+      "slug": "overseas",
+      "name": "海外一般"
+    },
+    {
+      "slug": "fuel_ev",
+      "name": "加油/電動車充電"
+    },
+    {
+      "slug": "holiday_any",
+      "name": "國定假日(任意通路)"
+    },
+    {
+      "slug": "food_delivery",
+      "name": "平台"
+    },
+    {
+      "slug": "ai_tools",
+      "name": "AI 工具"
+    },
+    {
+      "slug": "general",
+      "name": "一般消費"
+    }
+  ],
+  "cards": [
+    {
+      "id": "cathay_cube",
+      "cardImage": "/cards/cathay-cube.png",
+      "issuer": "國泰世華",
+      "name": "CUBE 卡",
+      "period": {
+        "start": "2025-07-01",
+        "end": "2025-12-31"
+      },
+      "points": {
+        "unit": "小樹點(信用卡)"
+      },
+      "levels": {
+        "LEVEL_1": {
+          "desc": "基礎(未完成卡費繳款條件)",
+          "max_rate": 0.02
+        },
+        "LEVEL_2": {
+          "desc": "完成指定繳款條件",
+          "max_rate": 0.03
+        },
+        "LEVEL_3": {
+          "desc": "財管等級/高資產戶",
+          "max_rate": 0.033
+        }
+      },
+      "offers": [
+        {
+          "id": "cube_play_digital",
+          "name": "玩數位",
+          "category": ["ai_tools"],
+          "rate": {
+            "LEVEL_1": 0.02,
+            "LEVEL_2": 0.03,
+            "VIP": 0.033
+          },
+          "calc_rules": {
+            "count_by": "transaction_date",
+            "unlimited": true
+          },
+          "keywords": [
+            "玩數位",
+            "AI",
+            "ChatGPT",
+            "Canva",
+            "Notion",
+            "Duolingo"
+          ],
+          "note": "ChatGPT｜Canva｜Claude｜Cursor｜Duolingo｜Gamma｜Gemini｜Notion｜Perplexity｜Speak"
+        },
+        {
+          "id": "cube_play_digital",
+          "name": "玩數位",
+          "category": ["ott"],
+          "rate": {
+            "LEVEL_1": 0.02,
+            "LEVEL_2": 0.03,
+            "VIP": 0.033
+          },
+          "calc_rules": {
+            "count_by": "transaction_date",
+            "unlimited": true
+          },
+          "keywords": ["玩數位", "串流", "影音", "音樂", "Netflix", "Spotify"],
+          "note": "Apple 媒體服務｜Google Play｜Disney+｜Netflix｜Spotify｜KKBOX｜YouTube Premium"
+        },
+        {
+          "id": "cube_play_digital",
+          "name": "玩數位",
+          "category": ["ecommerce"],
+          "rate": {
+            "LEVEL_1": 0.02,
+            "LEVEL_2": 0.03,
+            "VIP": 0.033
+          },
+          "calc_rules": {
+            "count_by": "transaction_date",
+            "unlimited": true
+          },
+          "keywords": [
+            "玩數位",
+            "電商",
+            "網購",
+            "蝦皮",
+            "momo",
+            "PChome",
+            "淘寶",
+            "酷澎"
+          ],
+          "note": "蝦皮｜momo｜PChome(不含儲值及電子票券)｜小樹購(不含電子票券)｜酷澎(Coupang)｜淘寶/天貓"
+        },
+        {
+          "id": "cube_enjoy_shop",
+          "name": "樂饗購",
+          "category": ["dining"],
+          "rate": {
+            "LEVEL_1": 0.02,
+            "LEVEL_2": 0.03,
+            "VIP": 0.033
+          },
+          "calc_rules": {
+            "count_by": "transaction_date",
+            "unlimited": true
+          },
+          "keywords": [
+            "樂饗購",
+            "餐飲",
+            "food",
+            "餐廳",
+            "外送",
+            "UberEats",
+            "foodpanda"
+          ]
+        },
+        {
+          "id": "cube_fun_travel",
+          "name": "趣旅行",
+          "category": ["travel", "airlines", "ota", "hotel"],
+          "rate": {
+            "LEVEL_1": 0.02,
+            "LEVEL_2": 0.03,
+            "VIP": 0.033
+          },
+          "calc_rules": {
+            "count_by": "transaction_date",
+            "unlimited": true
+          },
+          "keywords": [
+            "趣旅行",
+            "travel",
+            "機票",
+            "訂房",
+            "Agoda",
+            "Booking",
+            "Trip.com",
+            "Expedia",
+            "Klook",
+            "KKday"
+          ]
+        },
+        {
+          "id": "cube_selected",
+          "name": "集精選",
+          "category": ["selected_merchants", "convenience", "grocery_hyper"],
+          "rate": {
+            "LEVEL_1": 0.02,
+            "LEVEL_2": 0.02,
+            "VIP": 0.02
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": ["集精選", "超商", "全聯", "家樂福", "量販"]
+        },
+        {
+          "id": "cube_pay",
+          "name": "來支付（行動支付）",
+          "category": ["mobile_wallet"],
+          "rate": {
+            "LEVEL_1": 0.02,
+            "LEVEL_2": 0.02,
+            "VIP": 0.02
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": [
+            "來支付",
+            "LINE Pay",
+            "Apple Pay",
+            "Google Pay",
+            "Samsung Pay"
+          ]
+        }
+      ],
+      "general_rate": 0.003,
+      "remarks": [],
+      "links": {
+        "offer": "https://www.cathay-cube.com.tw/cathaybk/personal/product/credit-card/cards/cube-list"
+      },
+      "switch": {
+        "required": true,
+        "timezone": "Asia/Taipei",
+        "applies_to_local": ["00:00", "23:59"],
+        "anchor_local": "23:59",
+        "unit": "daily",
+        "effective": "same_day"
+      }
+    },
+    {
+      "id": "taishin_richart",
+      "cardImage": "/cards/taishin-richart.png",
+      "issuer": "台新銀行",
+      "name": "Richart 卡",
+      "period": {
+        "start": "2025-09-01",
+        "end": "2025-12-31"
+      },
+      "points": {
+        "unit": "台新Point(信用卡)"
+      },
+      "levels": {
+        "LEVEL_1": {
+          "desc": "僅切換",
+          "max_rate": 0.013
+        },
+        "LEVEL_2": {
+          "desc": "完成自扣或新戶試用",
+          "max_rate": 0.038
+        }
+      },
+      "offers": [
+        {
+          "id": "richart_pay",
+          "name": "Pay著刷",
+          "category": [
+            "mobile_wallet",
+            "mobile_data_esim",
+            "convenience",
+            "in_store"
+          ],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.038
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": [
+            "台新Pay",
+            "台灣Pay",
+            "新光三越",
+            "IKEA",
+            "路易莎",
+            "台灣大車隊",
+            "TS*",
+            "T-"
+          ],
+          "note": "綁定台新Pay享11萬家通路 3.8% (如台灣Pay場域、新光三越、四大超商、IKEA、路易莎咖啡、台灣大車隊等)",
+          "exclusions": [
+            {
+              "path_name": "台新Pay/台灣Pay",
+              "contents": [
+                "切換「Pay著刷」當日生效；帳單摘要顯示「TS*」(台新Pay) 或「T-」(台灣Pay(TWQR))。",
+                "超商以台新Pay 綁定支付，單筆上限 NT$3,000。",
+                "僅限以台新Pay於實體場域掃碼或感應付款。",
+                "超商代收/代付、禮物卡、儲值交易不加碼。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "richart_daily",
+          "name": "天天刷",
+          "category": ["convenience", "grocery_hyper"],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.033
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": ["7-11", "全家", "家樂福", "大買家"],
+          "note": "7-11及全家(限使用台新Pay綁定支付)｜家樂福｜大買家",
+          "exclusions": [
+            {
+              "path_name": "7-11、全家",
+              "contents": [
+                "限使用台新Pay綁定支付享回饋，使用實體卡、OPEN錢包、全盈支付、Famipay等行動支付不予回饋。",
+                "超商代收/售(如水/電/瓦斯、綜所稅、地方稅等)、禮物卡、儲值交易，不予回饋。",
+                "超商使用台新Pay綁定支付，單筆限額最高 NT3,000元。"
+              ]
+            },
+            {
+              "path_name": "家樂福/大買家",
+              "contents": ["家樂福/大買家美食街、商店街將不予加碼回饋。"]
+            }
+          ]
+        },
+        {
+          "id": "richart_daily",
+          "name": "天天刷",
+          "category": ["transport"],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.033
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": ["台鐵", "高鐵", "台灣大車隊", "LINE GO", "Yoxi", "Uber"],
+          "note": "台鐵｜高鐵｜台灣大車隊｜LINEGO｜Yoxi｜Uber",
+          "exclusions": [
+            {
+              "path_name": "高鐵/台鐵",
+              "contents": [
+                "高鐵/台鐵須於官方網站/APP/購票機/車站窗口購票（以交易日計），使用儲值卡（如悠遊卡）及TR-PASS等其他購票通路及乘車方式，不予加碼回饋。",
+                "將以交易之「消費日」當日留存於台新銀行最終回饋方案計算回饋，非乘車日",
+                "付款失敗、取消、退票等不計回饋；如有退款將依規定扣回台新Point。"
+              ]
+            },
+            {
+              "path_name": "台灣大車隊",
+              "contents": [
+                "於車上以實體卡刷卡、或於台灣大車隊APP綁定本卡之交易，享加碼回饋。"
+              ]
+            },
+            {
+              "path_name": "Uber",
+              "contents": ["限交易地為臺灣且交易幣別為新臺幣之交易享加碼回饋。"]
+            },
+            {
+              "path_name": "LINE GO",
+              "contents": [
+                "若切換「天天刷」並以實體卡、LINE Pay、Apple Pay、Google 錢包或Samsung Pay綁定消費，享加碼回饋資格。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "richart_daily",
+          "name": "天天刷",
+          "category": ["parking_carshare"],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.033
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": ["USPACE", "UDRIVE", "iRent"],
+          "note": "嘟嘟房｜Autopass(車麻吉)｜城市車旅｜ViViPark｜USPACE｜UDRIVE｜iRent｜和運租車｜格上租車",
+          "exclusions": [
+            {
+              "path_name": "USPACE/UDRIVE",
+              "contents": [
+                "USPACE：依平台定義之停車費為準，不含App 其他服務。",
+                "UDRIVE：以車輛使用費及相關費用為準。"
+              ]
+            },
+            {
+              "path_name": "嘟嘟房",
+              "contents": ["綁定 iParking App 支付不加碼。"]
+            },
+            {
+              "path_name": "Autopass(車麻吉)",
+              "contents": ["綁定 iParking App 支付不加碼。"]
+            }
+          ]
+        },
+        {
+          "id": "richart_big_spend",
+          "name": "大筆刷",
+          "category": ["department_store"],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.033
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": [
+            "百貨",
+            "新光三越",
+            "SOGO",
+            "微風",
+            "台北101",
+            "南紡",
+            "誠品",
+            "LaLaport"
+          ],
+          "note": "新光三越｜遠東SOGO｜廣三SOGO｜遠東百貨｜微風｜台北101｜遠東巨城｜南紡購物中心｜漢神百貨｜漢神巨蛋｜誠品生活｜Mitsui Shopping Park LaLaport(南港/台中)",
+          "exclusions": [
+            {
+              "path_name": "微風",
+              "contents": [
+                "僅微風廣場、微風南京、微風松高、微風信義、微風南山之消費享加碼回饋。"
+              ]
+            },
+            {
+              "path_name": "百貨",
+              "contents": [
+                "用 skm pay／101 Pay／Breeze Pay… 等「百貨支付工具」結帳一律不加碼。",
+                "簽單上顯示百貨公司名稱（含部分百貨美食街／餐廳），視為百貨交易；像 UNIQLO、Apple 直營等，簽單會顯示品牌名稱而不是百貨名稱則不符合「大筆刷」指定消費，不加碼。"
+              ]
+            },
+            {
+              "path_name": "誠品生活",
+              "contents": [
+                "誠品生活「實體門市」消費可加碼，誠品線上購物、誠品「書店」的消費則不加碼。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "richart_big_spend",
+          "name": "大筆刷",
+          "category": ["outlet"],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.033
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": ["MOP", "華泰", "SKM Park"],
+          "note": "MITSUI OUTLET PARK (林口/台中港/台南)｜華泰名品城｜SKM Park Outlets",
+          "exclusions": [
+            {
+              "path_name": "百貨",
+              "contents": [
+                "用 skm pay／101 Pay／Breeze Pay… 等「百貨支付工具」結帳一律不加碼。",
+                "簽單上顯示百貨公司名稱（含部分百貨美食街／餐廳），視為百貨交易；像 UNIQLO、Apple 直營等，簽單會顯示品牌名稱而不是百貨名稱則不符合「大筆刷」指定消費，不加碼。"
+              ]
+            },
+            {
+              "path_name": "誠品生活",
+              "contents": [
+                "誠品生活「實體門市」消費可加碼，誠品線上購物、誠品「書店」的消費則不加碼。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "richart_big_spend",
+          "name": "大筆刷",
+          "category": ["home_improvement"],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.033
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": ["IKEA", "特力屋", "HOLA", "宜得利"],
+          "note": "IKEA｜特力屋｜HOLA｜宜得利｜瑪黑家居",
+          "exclusions": [
+            {
+              "path_name": "居家裝修",
+              "contents": ["含線上購物官網，不含蝦皮等電商平台消費。"]
+            }
+          ]
+        },
+        {
+          "id": "richart_dining_fun",
+          "name": "好饗刷",
+          "category": ["dining"],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.033
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": ["餐飲"],
+          "note": "全臺餐飲(不含餐券)",
+          "exclusions": [
+            {
+              "path_name": "餐廳（台灣境內）",
+              "contents": [
+                "必須由收單機構認列為「餐廳」業別（MCC 5811/5812/5813/5814）",
+                "是否為餐廳以刷卡簽單或 Richart Life App 明細的「特約商店名稱」為準，不看發票抬頭"
+              ]
+            },
+            {
+              "path_name": "聯合信用卡中心小額支付平台之餐廳",
+              "contents": [
+                "透過該平台之餐飲交易不加碼；常見如連鎖飲料店（例：水巷茶弄…）、連鎖速食（例：麥當勞、肯德基…）等。"
+              ]
+            },
+            {
+              "path_name": "菸酒／酒吧／KTV／酒店／飯店／百貨／商場／外送平台之餐飲",
+              "contents": [
+                "上述通路所產生的「餐飲」交易不加碼（例：在百貨或商場內的餐廳、透過外送平台下單）。"
+              ]
+            },
+            {
+              "path_name": "餐券（票券）",
+              "contents": [
+                "購買餐券不列入回饋；如經銀行檢視不符合活動規定，已入帳的台新 Point(信用卡)將被扣回。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "richart_dining_fun",
+          "name": "好饗刷",
+          "category": ["events_ticketing"],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.033
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": ["KKTIX", "OPENTIX", "年代", "寬宏", "拓元"],
+          "note": "拓元售票｜KKTIX｜年代售票｜寬宏售票｜OPENTIX兩廳院文化生活",
+          "exclusions": []
+        },
+        {
+          "id": "richart_dining_fun",
+          "name": "好饗刷",
+          "category": ["theme_park"],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.033
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": [
+            "義大",
+            "六福村",
+            "劍湖山",
+            "麗寶樂園",
+            "九族文化村",
+            "小人國",
+            "遠雄海洋公園",
+            "X-Park"
+          ],
+          "note": "義大遊樂世界｜麗寶樂園｜六福村主題遊樂園｜九族文化村｜劍湖山世界主題遊樂園｜X-Park｜國立海洋生物博物館｜遠雄海洋公園大魯閣｜小人國主題樂園",
+          "exclusions": []
+        },
+        {
+          "id": "richart_dining_fun",
+          "name": "好饗刷",
+          "category": ["fuel_ev"],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.033
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": ["加油", "充電", "EVOASIS", "EVALUE"],
+          "note": "中油直營｜台亞直營｜全國加油｜源點EVOASIS｜華城電能EVALUE",
+          "exclusions": []
+        },
+        {
+          "id": "richart_dining_fun",
+          "name": "好饗刷",
+          "category": ["food_delivery"],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.033
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": ["UberEats", "foodpanda"],
+          "note": "Uber Eats｜Foodpanda",
+          "exclusions": [
+            {
+              "path_name": "外送平台",
+              "contents": ["限交易地為臺灣且交易幣別為新臺幣之交易享加碼回饋。"]
+            }
+          ]
+        },
+        {
+          "id": "richart_dining_fun",
+          "name": "好饗刷",
+          "category": ["specified_hotel"],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.033
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": [
+            "晶華",
+            "萬豪",
+            "煙波",
+            "老爺",
+            "福華",
+            "漢來",
+            "君悅",
+            "洲際",
+            "寒沐"
+          ],
+          "note": "晶華國際酒店集團｜台灣萬豪國際集團旗下飯店｜煙波飯店｜老爺酒店集團｜福華集團｜漢來飯店事業群｜台北君悅酒店｜高雄洲際酒店｜礁溪寒沐，指定飯店不含餐券、住宿券等票券，適用加碼飯店詳注意事項",
+          "exclusions": [
+            {
+              "path_name": "指定飯店",
+              "contents": [
+                "本活動回饋不包含購買餐券、住宿券等票券及代訂服務或相關精品商店等。",
+                "適用加碼回饋之飯店：台北晶華酒店、礁溪晶泉丰旅、北投晶泉丰旅、台南晶英酒店、太魯閣晶英酒店、蘭城晶英酒店、台北萬豪酒店、高雄萬豪酒店、W HOTEL、台北喜來登大飯店、台北士林萬麗酒店、台北國泰萬怡酒店、台北六福萬怡酒店、林口亞昕福朋喜來登酒店、八里福朋喜來登酒店、桃園喜來登酒店、新竹豐邑喜來登大飯店、宜蘭礁溪福朋喜來登酒店、台東桂田喜來登酒店、澎湖福朋喜來登酒店、然一酒店、煙波花蓮太魯閣、煙波新竹湖濱館、煙波新竹都會館、煙波花蓮館、煙波蘇澳四季雙泉館、煙波宜蘭館、煙波台南館、煙波花時間 宜蘭傳藝、煙波花時間 花蓮、礁溪老爺酒店、知本老爺酒店、新竹老爺酒店、北投老爺酒店、台北老爺酒店、台南老爺行旅、台中大毅老爺行旅、南港老爺行旅、老爺會館台北南西、老爺會館台北林森、台北福華大飯店、石門水庫福華渡假飯店、新竹福華大飯店、台中福華大飯店、溪頭福華渡假飯店、雲林華安大飯店、高雄福華大飯店、墾丁福華渡假飯店、台北漢來大飯店、高雄漢來大飯店、漢來日月行館、台北君悅酒店、高雄洲際酒店、礁溪寒沐酒店"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "richart_ecommerce_style",
+          "name": "數趣刷",
+          "category": ["ecommerce"],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.033
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": [
+            "蝦皮",
+            "momo",
+            "PChome",
+            "Amazon",
+            "博客來",
+            "酷澎",
+            "Richart Mart"
+          ],
+          "note": "蝦皮｜momo｜酷澎(Coupang)｜PChome｜Yahoo｜Amazon｜東森｜博客來｜Richart Mart",
+          "exclusions": [
+            {
+              "path_name": "蝦皮",
+              "contents": [
+                "限交易地為臺灣且交易幣別為新臺幣之交易享加碼回饋。",
+                "不含黃金等貴金屬、遊戲點數、票券消費。"
+              ]
+            },
+            {
+              "path_name": "PChome",
+              "contents": [
+                "不含商店街、支付連PChomePay、海外代購及PChome旅遊，亦不包含使用任何平台代扣繳費、購買廣告等。",
+                "排除PChome儲值及電子票券商品之整筆訂單消費。",
+                "一般商品建議與排除商品(PChome儲值及電子票券)分開購物車結帳，以確保消費能獲得「數趣刷」權益方案指定消費回饋。 "
+              ]
+            }
+          ]
+        },
+        {
+          "id": "richart_ecommerce_style",
+          "name": "數趣刷",
+          "category": ["online_courses"],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.033
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": [
+            "Hahow",
+            "Udemy",
+            "Kobo",
+            "Readmoo",
+            "PressPlay",
+            "Amazing Talker"
+          ],
+          "note": "Hahow｜PressPlay｜Amazing Talker｜Udemy｜Kobo｜Readmoo",
+          "exclusions": []
+        },
+        {
+          "id": "richart_ecommerce_style",
+          "name": "數趣刷",
+          "category": ["fashion"],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.033
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": ["UNIQLO", "ZARA", "lativ", "GAP", "NET", "GU"],
+          "note": "UNIQLO｜GU｜ZARA｜NET｜lativ｜GAP",
+          "exclusions": [
+            {
+              "path_name": "服飾",
+              "contents": [
+                "線上限官方網站。",
+                "實體通路將以信用卡簽單之商店名稱判斷是否為該品牌之交易，百貨店中店不予加碼回饋。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "richart_travel_play",
+          "name": "玩旅刷",
+          "category": ["overseas", "travel"],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.033
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": ["海外", "外幣"],
+          "note": "海外消費 (含線上及實體)",
+          "exclusions": [
+            {
+              "path_name": "海外消費",
+              "contents": [
+                "海外消費指交易幣別為外幣，或交易國別非臺灣(實際依商家拋送資訊為準)。",
+                "媒體服務不列入回饋，如YouTube、Spotify、TikTok、Apple媒體服務等。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "richart_travel_play",
+          "name": "玩旅刷",
+          "category": ["airlines", "travel"],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.033
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": [
+            "航空",
+            "華航",
+            "長榮",
+            "星宇",
+            "虎航",
+            "國泰航空",
+            "華信",
+            "立榮"
+          ],
+          "note": "華航｜長榮｜星宇｜虎航｜國泰航空｜華信｜立榮",
+          "exclusions": [
+            {
+              "path_name": "航空公司",
+              "contents": [
+                "限透過華航、長榮、星宇、虎航、國泰航空、華信、立榮航空公司實體或官網購買機票之消費。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "richart_travel_play",
+          "name": "玩旅刷",
+          "category": ["ota", "hotel", "travel"],
+          "rate": {
+            "LEVEL_1": 0.013,
+            "LEVEL_2": 0.033
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": [
+            "Klook",
+            "KKday",
+            "Agoda",
+            "Booking",
+            "Trip.com",
+            "Airbnb",
+            "Expedia",
+            "AIRSIM",
+            "雄獅",
+            "易遊網"
+          ],
+          "note": "Klook｜KKday｜AIRSIM｜Agoda｜Booking.com｜Trip.com｜Airbnb｜Hotels.com｜Expedia｜雄獅旅遊｜易遊網｜東南旅遊",
+          "exclusions": [
+            {
+              "path_name": "訂房平台",
+              "contents": [
+                "將以訂房平台實際消費日(帳單列示之交易日)選擇之回饋方案試算回饋。",
+                "若因訂房平台海外交易授權時間差，導致扣款時間差，未獲加碼回饋者，不得要求追溯回饋。",
+                "僅指定訂房平台之交易享加碼回饋。若於訂房平台選擇到店付款，則不列入加碼回饋範圍。"
+              ]
+            },
+            {
+              "path_name": "AIRSIM",
+              "contents": ["限於AIRSIM官網、AIRSIM ROAM APP訂購。"]
+            },
+            {
+              "path_name": "旅行社",
+              "contents": [
+                "限於指定旅行社直營通路(含官網)，以本卡消費之交易享加碼回饋。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "richart_holiday",
+          "name": "假日刷",
+          "category": ["holiday_any"],
+          "rate": {
+            "LEVEL_1": 0.02,
+            "LEVEL_2": 0.02
+          },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": ["假日", "國定假日", "例假日", "LINE Pay", "街口"],
+          "note": "國內節假日不限通路(含保費)消費享 2% (含LINE Pay及街口支付)",
+          "exclusions": [
+            {
+              "path_name": "國定假日(含例假日)",
+              "contents": [
+                "含線上投保、「手動」刷卡繳保費享2%回饋。",
+                "透過保險公司「自動」扣繳保費(含首期、續期)，不限切換類別，【OO刷】均享保費最高1.3%。",
+                "國內節假日的定義，依行政院人事行政總處公告之國定例假日為準(不含天災假)。",
+                "一般消費如屬不回饋項目(詳參專屬網頁)將不提供回饋，如四大超商、繳稅費等。"
+              ]
+            }
+          ]
+        }
+      ],
+      "other_benefits": [
+        {
+          "id": "insurance",
+          "name": "保費免切換",
+          "category": ["insurance"],
+          "rate": {
+            "flat": 0.013
+          },
+          "keywords": ["保費", "保險", "繳費"]
+        }
+      ],
+      "general_rate": 0.003,
+      "remarks": [
+        "適用期間：2025/9/1 - 2025/12/31之消費",
+        "優惠內容皆以 LEVEL 2 完成指定繳款條件為例，僅供參考，實際回饋依持卡人等級及消費類別而異。"
+      ],
+      "links": {
+        "offer": "https://mkp.taishinbank.com.tw/TsCms/marketing/expose/WM_20250702104010396/index.html",
+        "switch": "https://mkp.taishinbank.com.tw/TsCms/marketing/expose/WM_20250702104010396/index.html"
+      },
+      "switch": {
+        "required": true,
+        "timezone": "Asia/Taipei",
+        "applies_to_local": ["00:00", "23:59"],
+        "anchor_local": "23:59",
+        "unit": "daily",
+        "effective": "same_day"
+      }
+    }
+  ]
+}

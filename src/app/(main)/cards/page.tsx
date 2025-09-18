@@ -1,44 +1,44 @@
-import Link from "next/link";
+import { TbCreditCard } from "react-icons/tb";
+import { revalidatePath } from "next/cache";
 
 import { getMyCards } from "@/app/actions/cards";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CardDTO } from "@/app/types/card";
-
-import DeleteButton from "./delete-button";
+import Card from "@/components/cards/card";
+import CreateCardDialog from "./create-card-dialog";
 
 export default async function CardsPage() {
   const cards = await getMyCards();
 
+  async function refreshCards() {
+    "use server";
+    revalidatePath("/cards");
+  }
+
+  console.log(cards);
+
   return (
-    <div className="mx-auto max-w-2xl space-y-6 p-6">
+    <div className="space-y-6 p-5">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold">我的卡片</h1>
-        <Link href="/cards/new">
-          <Button>新增卡片</Button>
-        </Link>
+        <CreateCardDialog onCardCreated={refreshCards} size="icon" />
       </div>
 
       {cards.length === 0 && (
-        <p className="text-muted-foreground">還沒有卡片，先新增一張吧！</p>
+        <div className="rounded-xl bg-gray-50 py-12 text-center">
+          <TbCreditCard size="36" className="inline-block" />
+          <p className="py-3">還沒有卡片，先新增一張吧！</p>
+          <CreateCardDialog onCardCreated={refreshCards} />
+        </div>
       )}
 
       <div className="grid gap-4">
-        {cards.map((c: CardDTO) => (
-          <Card key={c.id} className="relative">
-            <CardHeader className="pr-16">
-              <CardTitle>
-                {c.issuer} {c.productName}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-muted-foreground text-sm">
-              <p>別名：{c.nickname ?? "未設定"}</p>
-              <p>卡號後四碼：{c.last4 ?? "--"}</p>
-            </CardContent>
-            <div className="absolute top-4 right-4">
-              <DeleteButton id={c.id} />
-            </div>
-          </Card>
+        {cards.map((card: CardDTO) => (
+          <Card
+            key={card.id}
+            id={card.id}
+            isDisplayOnly
+            onRefresh={refreshCards}
+          />
         ))}
       </div>
     </div>

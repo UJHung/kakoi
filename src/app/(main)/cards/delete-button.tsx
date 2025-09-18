@@ -1,24 +1,27 @@
 "use client";
 
-import { useTransition } from "react";
-import { deleteCard } from "@/app/actions/cards";
-import { Button } from "@/components/ui/button";
+import { RiDeleteBinLine } from "react-icons/ri";
+import { toast } from "sonner";
 
-export default function DeleteButton({ id }: { id: string }) {
-  const [pending, start] = useTransition();
+import { deleteCard } from "@/app/actions/cards";
+
+export default function DeleteButton({
+  id,
+  onRefresh,
+}: {
+  id: string;
+  onRefresh: () => void;
+}) {
   return (
-    <Button
-      variant="destructive"
-      size="sm"
-      disabled={pending}
-      onClick={() =>
-        start(async () => {
-          await deleteCard(id);
-          location.reload();
-        })
-      }
+    <div
+      className="flex items-center gap-1 text-red-500"
+      onClick={() => async () => {
+        await deleteCard(id);
+        onRefresh();
+        toast.success("刪除成功");
+      }}
     >
-      {pending ? "刪除中..." : "刪除"}
-    </Button>
+      刪除卡片
+    </div>
   );
 }

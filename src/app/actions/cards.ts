@@ -5,14 +5,18 @@ import { prisma } from "@/lib/prisma";
 import { getOrCreateGuestProfile } from "@/lib/profile";
 
 export async function createUserCard(data: {
-  issuer: string;
-  productName: string;
+  cardId: string;
   nickname?: string;
   last4?: string;
 }) {
   const profile = await getOrCreateGuestProfile();
   const card = await prisma.userCard.create({
-    data: { ...data, profileId: profile.id },
+    data: {
+      cardId: data.cardId,
+      nickname: data.nickname,
+      last4: data.last4,
+      profileId: profile.id
+    },
   });
   return card;
 }
