@@ -70,7 +70,7 @@ export default function OffersPage() {
           )}
           <div className="text-center">
             <Button
-              variant="outline"
+              size="lg"
               className="mt-4"
               onClick={() => {
                 rounter.push("/dashboard");
@@ -93,43 +93,54 @@ const Card = ({ card, offer }: { card: any; offer: any }) => {
 
   return (
     <>
-      <li className="relative grid grid-cols-5 gap-5 rounded-xl bg-white p-4">
-        <div className="col-span-2">
+      <li className="relative grid gap-4 rounded-xl bg-white p-4 sm:grid-cols-5 sm:gap-6">
+        <div className="sm:col-span-2">
           <ImageLoader
             src={card.cardImage}
             alt={card.name}
             width={400}
             height={252}
-            className="rounded-lg object-cover"
+            className="w-full rounded-xl border object-cover sm:rounded-lg"
           />
         </div>
-        <div className="col-span-3">
-          <div className="text-lg font-semibold">{card.name}</div>
-          <p className="mb-3 text-gray-500">{card.issuer}</p>
-          <div className="flex gap-x-1.5">
-            <Badge variant="orange" className="mb-2">
-              {offer.name} {Math.round((offer.rate?.LEVEL_2 || 0) * 1000) / 10}%
+        <div className="sm:col-span-3">
+          <div className="mb-1 flex flex-wrap gap-1.5">
+            <Badge variant="orange">
+              {offer.name}{" "}
+              {Math.round(
+                (offer.rate?.LEVEL_2 || offer.rate?.SIMPLE || 0) * 1000,
+              ) / 10}
+              %
             </Badge>
-            <Badge variant="sky" className="mb-2">
+            {offer.rate?.NEW && (
+              <Badge variant="amber">
+                新戶加碼 {Math.round((offer.rate?.NEW || 0) * 1000) / 10}%
+              </Badge>
+            )}
+            <Badge variant="sky">
               {offer.calc_rules?.unlimited
                 ? "回饋無上限"
-                : `上限 ${offer.calc_rules?.cap || 0} 元`}
+                : `上限 ${offer.calc_rules?.cap_per_month || 0} ${offer.calc_rules?.cap_unit === "points" ? "點" : "元"}`}
             </Badge>
           </div>
+          <div className="text-lg font-semibold">{card.name}</div>
+          <p className="mb-3 text-gray-500">{card.issuer}</p>
           <p>{offer.note}</p>
         </div>
 
-        <Button
-          className="absolute top-4 right-4"
-          size="icon"
-          variant="outline"
-          onClick={() => {
-            setIsOpen(true);
-            setExclusions(offer.exclusions || []);
-          }}
-        >
-          <FiInfo className="" />
-        </Button>
+        {offer?.exclusions && offer.exclusions.length > 0 && (
+          <Button
+            className="absolute top-8 right-8 sm:top-4 sm:right-4"
+            size="icon"
+            variant="outline"
+            onClick={() => {
+              setIsOpen(true);
+              setExclusions(offer.exclusions || []);
+            }}
+          >
+            <FiInfo className="" />
+          </Button>
+        )}
       </li>
 
       <ExclusionDialog

@@ -86,7 +86,7 @@ export default function CreateCardDialog({
           <div className="flex-col space-y-4">
             <DialogTitle>新增卡片</DialogTitle>
             <h3 className="text-sm font-medium">選擇卡片</h3>
-            <div className="max-h-[62vh] overflow-y-auto">
+            <div className="max-h-[62vh] overflow-y-auto pr-2 pb-2">
               {data.cards.length > 0 && (
                 <div className="space-y-2">
                   <div className="grid gap-4">

@@ -1,15 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { HiPlus } from "react-icons/hi";
-
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 interface ExclusionDialogProps {
   size?: "default" | "icon";
@@ -27,7 +19,7 @@ export default function ExclusionDialog({
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent
-        className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:slide-in-from-bottom fixed top-auto right-0 bottom-0 left-1/2 mx-0 my-0 h-[85vh] max-w-full -translate-x-1/2 translate-y-0 rounded-t-xl rounded-b-none border-b-0 duration-200 ease-out"
+        className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:slide-in-from-bottom fixed top-auto right-0 bottom-0 left-1/2 mx-0 my-0 h-[95vh] max-w-full -translate-x-1/2 translate-y-0 rounded-t-xl rounded-b-none border-b-0 duration-200 ease-out"
         showCloseButton={false}
       >
         <div className="flex h-full flex-col gap-6">
@@ -35,7 +27,7 @@ export default function ExclusionDialog({
             <DialogTitle className="text-lg font-semibold">
               注意事項
             </DialogTitle>
-            <div className="flex-auto space-y-5 overflow-y-auto">
+            <div className="max-h-[78vh] flex-auto space-y-5 overflow-y-auto">
               {exclusions.map((excl, idx) => (
                 <div key={idx} className="space-y-2">
                   <h3 className="text-base">{excl.path_name}</h3>
