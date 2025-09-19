@@ -9,6 +9,12 @@ function newId() {
 export function middleware(req: NextRequest) {
   const res = NextResponse.next();
   const hasGuest = req.cookies.get("guestId");
+
+  // If on home page and has guestId cookie, redirect to dashboard
+  if (req.nextUrl.pathname === "/" && hasGuest) {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
+  }
+
   if (!hasGuest) {
     const id = newId();
     res.cookies.set("guestId", id, {
