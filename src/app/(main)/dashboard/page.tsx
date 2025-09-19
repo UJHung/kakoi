@@ -1,12 +1,11 @@
 import FilterBar from "./filter-bar";
-import FilterTag from "./filter-tag";
 import CategoryBlock from "./category-block";
 import MyCardBlock from "./my-card-block";
 import { categories } from "@/data/dashboard";
 
 export default async function Page() {
   return (
-    <div className="space-y-6 p-5">
+    <div className="space-y-4 p-5 sm:space-y-6">
       <div className="rounded-lg bg-white p-5">
         <h1 className="mb-3 text-2xl font-semibold">我的卡片</h1>
         <MyCardBlock />
@@ -17,12 +16,7 @@ export default async function Page() {
         <FilterBar />
       </div>
 
-      <div className="rounded-lg bg-white p-5">
-        <h1 className="mb-3 text-2xl font-semibold">快速查找</h1>
-        <FilterTag />
-      </div>
-
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-3 gap-4 text-center md:gap-6 md:text-left">
         {categories.map((cat) => (
           <CategoryBlock
             key={cat.category}

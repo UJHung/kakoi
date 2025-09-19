@@ -1,5 +1,6 @@
 import { MdAddCard } from "react-icons/md";
 import { HiSpeakerphone } from "react-icons/hi";
+import { RiSettingsFill } from "react-icons/ri";
 import Link from "next/link";
 
 import { getMyCards } from "@/app/actions/cards";
@@ -31,7 +32,7 @@ export default async function MyCardBlock() {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className="relative grid grid-cols-3 gap-4 md:grid-cols-4">
       {displayCards.map((card) => {
         if (!card) return null;
         return (
@@ -39,9 +40,9 @@ export default async function MyCardBlock() {
             <ImageLoader
               src={card.cardImage}
               alt={`${card.issuer} ${card.name}`}
-              width={120}
-              height={75}
-              className="w-full rounded-md object-contain"
+              width={180}
+              height={110}
+              className="w-full rounded-lg border object-contain"
             />
           </div>
         );
@@ -49,10 +50,17 @@ export default async function MyCardBlock() {
 
       <Link
         href="/cards"
-        className="flex h-full w-full flex-col items-center justify-center gap-1 rounded-md border border-dashed text-gray-400 hover:bg-gray-50"
+        className="hidden h-full w-full flex-col items-center justify-center gap-1 rounded-lg border border-dashed bg-white text-gray-400 hover:bg-gray-50 md:flex"
       >
         <MdAddCard size="24" />
         新增卡片
+      </Link>
+
+      <Link
+        href="/cards"
+        className="absolute -top-12 -right-0 rounded-md bg-black p-2 text-white md:block"
+      >
+        <RiSettingsFill size="16" />
       </Link>
     </div>
   );
