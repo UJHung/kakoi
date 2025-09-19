@@ -21,21 +21,21 @@ export default function Card({
   if (!card) return null;
 
   return (
-    <div className={cn("relative rounded-xl bg-white p-4", className)}>
-      <div className="grid grid-cols-5 gap-6">
-        <div className="col-span-2">
+    <div className={cn("relative rounded-xl bg-white p-5 sm:p-4", className)}>
+      <div className="grid gap-4 sm:grid-cols-5 sm:gap-6">
+        <div className="sm:col-span-2">
           <ImageLoader
             src={card.cardImage || "/cards/default-card.png"}
             alt={`${card.issuer} ${card.name}`}
             width={400}
             height={252}
-            className="rounded-lg object-cover"
+            className="w-full rounded-xl border object-cover sm:rounded-lg"
           />
         </div>
-        <div className="col-span-3">
+        <div className="sm:col-span-3">
           {card.switch?.required && isDisplayOnly && (
-            <Badge className="mb-1" variant="sky">
-              需切換
+            <Badge className="mb-1" variant="orange">
+              需切換方案
             </Badge>
           )}
           <div className="text-lg font-semibold">{card.name}</div>
@@ -46,44 +46,17 @@ export default function Card({
               card.remarks.map((remark, index) => (
                 <li key={index}>{remark}</li>
               ))}
-            {card.switch?.required && (
-              <li>
-                回饋方案以當日{card.switch.anchor_local}
-                記錄於銀行之回饋方案，計算當日零時起之逐筆交易回饋
-              </li>
-            )}
           </ul>
         </div>
       </div>
       {isDisplayOnly && (
-        <div className="absolute top-4 right-4">
+        <div className="absolute top-8 right-8 sm:top-4 sm:right-4">
           <Dropdown
             id={id}
             linkSwitch={card?.links?.switch}
             linkOffer={card?.links?.offer}
             onRefresh={onRefresh}
           />
-          {/* <DropdownMenu>
-            <DropdownMenuTrigger className="cursor-pointer rounded-md border p-2 hover:bg-gray-100">
-              <FiMoreHorizontal />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              {card?.links?.offer && (
-                <Link href={card?.links?.offer} target="_blank">
-                  <DropdownMenuItem>查看詳情</DropdownMenuItem>
-                </Link>
-              )}
-              {card?.links?.switch && (
-                <Link href={card?.links?.switch} target="_blank">
-                  <DropdownMenuItem>切換方案教學</DropdownMenuItem>
-                </Link>
-              )}
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-                {onRefresh && <DeleteButton id={id} onRefresh={onRefresh} />}
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu> */}
         </div>
       )}
     </div>

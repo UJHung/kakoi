@@ -26,7 +26,7 @@ export default function Dropdown({
 }) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="cursor-pointer rounded-md border p-2 hover:bg-gray-100">
+      <DropdownMenuTrigger className="cursor-pointer rounded-md border bg-white p-2 hover:bg-gray-100">
         <FiMoreHorizontal />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
