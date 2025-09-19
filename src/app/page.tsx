@@ -16,8 +16,8 @@ export default function Home() {
           height={100}
           priority
         />
-        <div className="mt-2 text-xl font-bold">KAKU</div>
-        <div className="mt-3 mb-6">你的個人信用卡與優惠管理工具</div>
+        <div className="mt-2 text-xl font-bold">KAKOi</div>
+        <div className="mt-3 mb-6">卡片都在這，優惠不會漏</div>
         <div className="flex flex-col items-center gap-4 sm:flex-row">
           <button
             onClick={() => {
