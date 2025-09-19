@@ -13,8 +13,8 @@ const lineSeed = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Kaku - Personal credit card & perks manager",
-  description: "Personal credit card & perks manager",
+  title: "KAKOi",
+  description: "卡在KAKOi，優惠都可以",
   icons: {
     icon: [
       { url: "/fav16.png", sizes: "16x16", type: "image/png" },
