@@ -1,25 +1,39 @@
+"use client";
+
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col row-start-2 items-center ">
+    <div
+      className="relative grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-sans sm:p-20"
+      style={{
+        backgroundImage: "url('/logo-bg.svg')",
+        backgroundPosition: "left top",
+        backgroundSize: "100px",
+      }}
+    >
+      <main className="row-start-2 flex flex-col items-center">
         <Image
           className="dark:invert"
-          src="/logo.svg"
+          src="/logo-vertical.svg"
           alt="Kaku logo"
-          width={100}
-          height={100}
+          width={200}
+          height={200}
           priority
         />
-        <div className="font-bold text-xl mt-2">KAKU</div>
-        <div className="mb-6 mt-3">你的個人信用卡與優惠管理工具</div>
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+        <div className="mb-6 text-center text-lg font-semibold">
+          卡在KAKOi，優惠都可以
+        </div>
+        <div className="flex flex-col items-center gap-4 sm:flex-row">
           <button
-            disabled
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto disabled:opacity-20"
+            onClick={() => {
+              router.push("/cards");
+            }}
+            className="bg-foreground text-background flex cursor-pointer items-center justify-center rounded-lg px-4 py-3 text-sm font-medium transition-colors hover:bg-gray-800 disabled:opacity-20 sm:px-5 sm:text-base"
           >
-            即將推出
+            立即體驗
           </button>
         </div>
       </main>

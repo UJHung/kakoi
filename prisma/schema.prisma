@@ -1,0 +1,72 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Profile {
+  id        String      @id           // 這裡可用 guestId 或 userId
+  type      ProfileType @default(GUEST)
+  createdAt DateTime    @default(now())
+  cards     UserCard[]
+}
+
+enum ProfileType {
+  GUEST
+  USER
+}
+
+model UserCard {
+  id          String   @id @default(cuid())
+  profileId   String
+  cardId      String   // 對應 cards.json 中的 card.id
+  nickname    String?  // 使用者自訂別名
+  last4       String?  // 卡號後四碼
+  createdAt   DateTime @default(now())
+  // 如果想加「自訂資料」且通用：用 JSON（SQLite / Postgres 都能用）
+  meta        Json?    // 使用者個人化設定
+  profile     Profile  @relation(fields: [profileId], references: [id])
+  offers      CardOffer[]
+
+  @@index([profileId])
+  @@index([cardId])  // 方便查詢特定卡片的用戶
+}
+
+model Offer {
+  id           String    @id @default(cuid())
+  title        String
+  description  String?
+  categories   Json       // 存儲分類數組，如 ["餐飲", "超商"]
+  region       String?   // "台灣" | "海外"
+  startDate    DateTime?
+  endDate      DateTime?
+  baseRate     Float?    // 基礎 %
+  bonusRate    Float?    // 加碼 %
+  capPerMonth  Int?      // 每月上限（$）
+  minSpend     Int?      // 達檻（$）
+  source       String?   // 來源連結
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  // 放進規則或白名單、支付工具限制（JSON 最彈性）
+  meta         Json?
+  cards        CardOffer[]
+}
+
+model CardOffer {
+  id         String   @id @default(cuid())
+  cardId     String
+  userCardId String
+  offerId    String
+  isActive   Boolean  @default(true)
+
+  userCard   UserCard @relation(fields: [userCardId], references: [id])
+  offer      Offer    @relation(fields: [offerId], references: [id])
+
+  @@unique([userCardId, offerId])
+  @@index([userCardId])
+  @@index([offerId])
+}
