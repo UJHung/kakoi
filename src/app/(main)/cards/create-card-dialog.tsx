@@ -39,9 +39,9 @@ export default function CreateCardDialog({
 
   useEffect(() => {
     async function fetchMyCards() {
-      const cards = await getMyCards();
+      const cards = (await getMyCards()) as MyCardProps[];
       setMyCards(
-        cards.map((card) => ({
+        cards.map((card: MyCardProps) => ({
           ...card,
           nickname: card.nickname === null ? undefined : card.nickname,
           last4: card.last4 === null ? undefined : card.last4,
