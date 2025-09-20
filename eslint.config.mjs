@@ -32,6 +32,24 @@ const eslintConfig = [
       "@typescript-eslint/no-explicit-any": "off",
     },
   },
+  // Disable strict TypeScript rules for generated files (Prisma client, runtime, wasm, etc.)
+  {
+    files: [
+      "src/generated/**",
+      "prisma/generated/**",
+      "**/generated/**",
+      "**/.prisma/**",
+      "**/prisma/**/runtime/**",
+      "src/generated/prisma/**",
+    ],
+    rules: {
+      "@typescript-eslint/no-unused-expressions": "off",
+      "@typescript-eslint/no-require-imports": "off",
+      "@typescript-eslint/no-this-alias": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
 ];
 
 export default eslintConfig;

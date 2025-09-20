@@ -1,4 +1,4 @@
-import type { UserCard, Offer as PrismaOffer } from "@prisma/client";
+import type { UserCard } from "@prisma/client";
 import CardData from "@/data/cards.json";
 
 // cards.json 中的 offer 結構

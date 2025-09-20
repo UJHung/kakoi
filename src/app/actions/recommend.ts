@@ -1,14 +1,7 @@
 // app/actions/recommend.ts
-"use server";
-import { prisma } from "@/lib/prisma";
-
-type Input = {
-  amount: number;
-  category?: string;
-  payMethod?: "CARD" | "APPLE" | "GOOGLE" | "TAISHIN_PAY" | "LINE_PAY";
-  level2?: boolean; // 台新 Richart 的升級狀態
-  profileId: string;
-};
+// "use server";
+// Note: recommend action implementation is disabled for now. Keep server directive.
+// Removed unused imports and types to silence no-unused-vars warnings.
 
 // export async function recommendCard(input: Input) {
 //   // 1) 取出「我的卡」關聯的有效優惠

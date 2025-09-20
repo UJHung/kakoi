@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint",
+    "lint": "eslint \"src/**/*.{js,ts,jsx,tsx}\" --ignore-pattern \"src/generated/**\" --ignore-pattern \"**/.next/**\" --ignore-pattern \"prisma/generated/**\"",
     "db:reset": "npx prisma generate && npx prisma db push && npx tsx prisma/seed.ts"
   },
   "dependencies": {

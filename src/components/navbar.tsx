@@ -2,7 +2,6 @@
 
 import { TbCardsFilled, TbSearch } from "react-icons/tb";
 import { GoHomeFill } from "react-icons/go";
-import { MdDiscount } from "react-icons/md";
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -13,7 +12,6 @@ export default function Nav() {
   const navItems = [
     { href: "/cards", icon: TbCardsFilled, id: "cards" },
     { href: "/dashboard", icon: GoHomeFill, id: "dashboard" },
-    // { href: "/recommend", icon: TbSearch, id: "recommend" },
     { href: "/offers", icon: TbSearch, id: "offers" },
   ];
 

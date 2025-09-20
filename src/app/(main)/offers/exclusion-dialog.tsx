@@ -4,14 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 interface ExclusionDialogProps {
-  size?: "default" | "icon";
   exclusions: { contents: string[]; path_name: string }[];
   isOpen: boolean;
   onClose: () => void;
 }
 
 export default function ExclusionDialog({
-  size = "default",
   isOpen,
   exclusions,
   onClose,
