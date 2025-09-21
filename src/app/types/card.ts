@@ -1,5 +1,5 @@
 import type { UserCard } from "@prisma/client";
-import CardData from "@/data/cards.json";
+import { getCardInfo } from "@/lib/card-data";
 
 // cards.json 中的 offer 結構
 export type CardOfferProps = {
@@ -100,15 +100,11 @@ export type CardPresetProps = {
   createdAt?: Date; // 新增時間
 };
 
-export function getCardInfo(cardId: string): CardProps | undefined {
-  return CardData.cards.find((card) => card.cardId === cardId);
-}
-
 // 組合用戶卡片和卡片詳細資訊
-export function getUserCardWithDetails(
+export async function getUserCardWithDetails(
   userCard: MyCardProps,
-): UserCardWithDetails | null {
-  const cardInfo = getCardInfo(userCard.cardId);
+): Promise<UserCardWithDetails | null> {
+  const cardInfo = await getCardInfo(userCard.cardId);
   if (!cardInfo) {
     return null;
   }
