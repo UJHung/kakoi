@@ -5,7 +5,7 @@ import { FiInfo } from "react-icons/fi";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
-import ImageLoader from "@/components/image-loader";
+import ImageLoader from "@/components/common/image-loader";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import ExclusionDialog from "@/app/(main)/offers/exclusion-dialog";

@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 
 import { Badge } from "@/components/ui/badge";
-import ImageLoader from "@/components/image-loader";
+import ImageLoader from "@/components/common/image-loader";
 import Dropdown from "./dropdown-menu";
 import { useCardDetail } from "@/hooks/use-cards";
 
