@@ -1,7 +1,9 @@
 "use client";
 
+import { useState, useMemo } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import { FiInfo } from "react-icons/fi";
+import { RiPokerHeartsFill } from "react-icons/ri";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
@@ -14,7 +16,6 @@ import ExclusionDialog from "@/app/(main)/offers/exclusion-dialog";
 import FilterBar from "@/app/(main)/dashboard/filter-bar";
 import { useOffers } from "@/hooks/use-offers";
 import { useDisclosure } from "@/hooks/use-disclosure";
-import { useState, useMemo } from "react";
 
 export default function OffersClient() {
   const router = useRouter();
@@ -24,12 +25,24 @@ export default function OffersClient() {
 
   // Switch 狀態 - 預設只顯示我的卡片
   const [showMyCardsOnly, setShowMyCardsOnly] = useState(true);
+  const [switchLoading, setSwitchLoading] = useState(false);
 
   // 使用自定義 hook 獲取優惠資料
   const { results, loading, error, selectedCategory } = useOffers(
     q || undefined,
     categorySlug || undefined,
   );
+
+  // Switch 切換處理函數
+  const handleSwitchChange = async (checked: boolean) => {
+    setSwitchLoading(true);
+
+    // 500ms 延遲
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
+    setShowMyCardsOnly(checked);
+    setSwitchLoading(false);
+  };
 
   // 根據 Switch 狀態過濾結果
   const filteredResults = useMemo(() => {
@@ -38,6 +51,9 @@ export default function OffersClient() {
     }
     return results;
   }, [results, showMyCardsOnly]);
+
+  // 組合 loading 狀態
+  const isLoading = loading || switchLoading;
 
   return (
     <div className="p-5">
@@ -53,7 +69,7 @@ export default function OffersClient() {
       </div>
 
       <div className="mt-6">
-        <data className="flex items-center justify-between">
+        <div className="flex items-center justify-between">
           <h2 className="text-xl font-semibold">
             {q || selectedCategory?.name}
           </h2>
@@ -61,16 +77,27 @@ export default function OffersClient() {
             <Switch
               id="my-cards"
               checked={showMyCardsOnly}
-              onCheckedChange={setShowMyCardsOnly}
+              onCheckedChange={handleSwitchChange}
+              disabled={isLoading}
             />
-            <Label htmlFor="my-cards">僅顯示我的卡片</Label>
+            <Label
+              htmlFor="my-cards"
+              className={switchLoading ? "opacity-50" : ""}
+            >
+              僅顯示我的卡片
+            </Label>
           </div>
-        </data>
-        {loading ? (
-          <div className="grid animate-pulse gap-6 pt-4">
-            <div className="h-[160px] rounded-xl bg-white/50" />
-            <div className="h-[160px] rounded-xl bg-white/50" />
-            <div className="h-[160px] rounded-xl bg-white/50" />
+        </div>
+
+        {isLoading ? (
+          <div className="relative mt-4 animate-pulse rounded-xl bg-white p-5 sm:p-4">
+            <div className="grid gap-4 sm:grid-cols-5 sm:gap-6">
+              <div className="h-40 rounded-xl bg-gray-100 sm:col-span-2"></div>
+              <div className="space-y-3 sm:col-span-3">
+                <div className="h-6 w-3/4 rounded-md bg-gray-100"></div>
+                <div className="h-4 w-1/2 rounded-md bg-gray-100"></div>
+              </div>
+            </div>
           </div>
         ) : (
           <ul className="mt-3 space-y-3">
@@ -79,7 +106,7 @@ export default function OffersClient() {
                 key={i}
                 card={r.card}
                 offer={r.offer}
-                userOwned={r.userOwned}
+                userOwned={r.userOwned && !showMyCardsOnly}
               />
             ))}
             {filteredResults.length === 0 && (
@@ -132,17 +159,8 @@ const Card = ({
 
   return (
     <>
-      <li
-        className={`relative grid gap-4 rounded-xl p-4 sm:grid-cols-5 sm:gap-6 ${
-          userOwned ? "border-2 border-green-500 bg-white" : "bg-white"
-        }`}
-      >
-        {userOwned && (
-          <div className="absolute top-2 right-2 z-10 rounded bg-green-500 px-2 py-1 text-xs text-white">
-            您擁有此卡
-          </div>
-        )}
-        <div className="sm:col-span-2">
+      <li className="relative grid gap-4 rounded-xl bg-white p-4 sm:grid-cols-5 sm:gap-6">
+        <div className="relative sm:col-span-2">
           <ImageLoader
             src={card.cardImage}
             alt={card.name}
@@ -150,6 +168,12 @@ const Card = ({
             height={252}
             className="w-full rounded-xl border object-cover sm:rounded-lg"
           />
+          {userOwned && (
+            <RiPokerHeartsFill
+              size="20"
+              className="absolute top-3 right-3 text-orange-300"
+            />
+          )}
         </div>
         <div className="sm:col-span-3">
           <div className="mb-1 flex flex-wrap gap-1.5">

@@ -29,9 +29,9 @@ export default async function CardsPage() {
       )}
 
       <div className="grid gap-4">
-        {userCards.map((card) => (
+        {userCards.map((card, index) => (
           <Card
-            key={card.id}
+            key={index}
             id={card.cardId}
             isDisplayOnly
             onRefresh={refreshCards}
