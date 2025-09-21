@@ -15,6 +15,9 @@ const lineSeed = localFont({
 export const metadata: Metadata = {
   title: "KAKOi",
   description: "卡在KAKOi，優惠都可以",
+  openGraph: {
+    images: ["/image-seo.png"],
+  },
   icons: {
     icon: [
       { url: "/fav16.png", sizes: "16x16", type: "image/png" },
