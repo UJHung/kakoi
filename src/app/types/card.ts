@@ -1,5 +1,4 @@
-import type { UserCard } from "@prisma/client";
-import CardData from "@/data/cards.json";
+import { getCardInfo } from "@/lib/utils/card-data";
 
 // cards.json 中的 offer 結構
 export type CardOfferProps = {
@@ -19,6 +18,8 @@ export type CardOfferProps = {
 // 為了向後兼容，保留舊的名稱
 export type OfferProps = CardOfferProps;
 
+
+// cards.json 中的 card 結構
 export type CardProps = {
   cardId: string;
   cardImage?: string;
@@ -42,11 +43,13 @@ export type CardProps = {
   };
 };
 
+// cards.json 中的 category 結構
 interface CategoryProps {
   slug: string;
   name: string;
 }
 
+// 整個 cards.json 結構
 export type CardsDataset = {
   schema_version: string;
   generated_at?: string;
@@ -54,16 +57,22 @@ export type CardsDataset = {
   cards: CardProps[];
 };
 
-export type CardDTO = UserCard & { offers?: OfferProps[] };
+// 用於新增卡片的資料結構
+export type CardDTO = {
+  cardId: string;
+  nickname?: string;
+  cardType?: 'VISA' | 'MASTERCARD' | 'JCB' | 'AMEX' | 'UNIONPAY' | 'OTHER';
+  cardLevel?: 'LEVEL1' | 'LEVEL2' | 'LEVEL3' | 'VIP' | 'OTHER';
+  expiryDate?: string; // ISO date string
+  billingDay?: number; // 1-31，每月結賬日
+}
 
 // 僅用戶個人化資訊（對應新的 UserCard schema）
 export type MyCardProps = {
   id: string; // UserCard.id
   cardId: string; // UserCard.cardId，對應 cards.json 中的 card.id
   nickname?: string; // 使用者自訂別名
-  last4?: string; // 卡號後四碼
   createdAt?: Date; // 新增時間
-  meta?: any; // 使用者個人化設定
 };
 
 // 完整的用戶卡片資訊（MyCardProps + CardProps）
@@ -100,15 +109,11 @@ export type CardPresetProps = {
   createdAt?: Date; // 新增時間
 };
 
-export function getCardInfo(cardId: string): CardProps | undefined {
-  return CardData.cards.find((card) => card.cardId === cardId);
-}
-
 // 組合用戶卡片和卡片詳細資訊
-export function getUserCardWithDetails(
+export async function getUserCardWithDetails(
   userCard: MyCardProps,
-): UserCardWithDetails | null {
-  const cardInfo = getCardInfo(userCard.cardId);
+): Promise<UserCardWithDetails | null> {
+  const cardInfo = await getCardInfo(userCard.cardId);
   if (!cardInfo) {
     return null;
   }

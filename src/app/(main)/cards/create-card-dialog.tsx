@@ -13,8 +13,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { createUserCard, getMyCards } from "@/app/actions/cards";
-import { MyCardProps } from "@/app/types/card";
+import { addCard, getMyCards } from "@/app/actions/cards";
+import { CardProps, CardDTO } from "@/app/types/card";
 import data from "@/data/cards.json";
 
 interface CreateCardDialogProps {
@@ -22,50 +22,60 @@ interface CreateCardDialogProps {
   onCardCreated: () => void;
 }
 
-// 新增卡片時的表單資料
-interface CreateCardForm {
-  cardId: string; // 選中的卡片ID
-  nickname?: string;
-  last4?: string;
-}
-
 export default function CreateCardDialog({
   size = "default",
   onCardCreated,
 }: CreateCardDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [myCards, setMyCards] = useState<MyCardProps[]>([]);
-  const { watch, handleSubmit, setValue, reset } = useForm<CreateCardForm>();
+  const [isLoading, setIsLoading] = useState(false);
+  const [myCards, setMyCards] = useState<CardDTO[]>([]);
+  const { watch, handleSubmit, setValue, reset } = useForm<CardDTO>();
+
+  // 將 fetchMyCards 提取為獨立函數
+  const fetchMyCards = async () => {
+    if (isLoading) return;
+
+    setIsLoading(true);
+    try {
+      const cards = (await getMyCards()) as CardDTO[];
+      setMyCards(cards);
+    } catch (error) {
+      console.error("Error fetching my cards:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  async function onSubmit(data: CardDTO) {
+    try {
+      await addCard({
+        cardId: data.cardId,
+        nickname: data.nickname,
+      });
+
+      // 新增成功後立即更新本地卡片列表
+      await fetchMyCards();
+
+      setIsOpen(false);
+      reset();
+      onCardCreated();
+      toast.success("新增成功");
+    } catch (error) {
+      console.error("Error adding card:", error);
+      toast.error("新增失敗，請重試");
+    }
+  }
+
+  const selectPreset = (card: CardProps) => {
+    setValue("cardId", card.cardId);
+  };
 
   useEffect(() => {
-    async function fetchMyCards() {
-      const cards = (await getMyCards()) as MyCardProps[];
-      setMyCards(
-        cards.map((card: MyCardProps) => ({
-          ...card,
-          nickname: card.nickname === null ? undefined : card.nickname,
-          last4: card.last4 === null ? undefined : card.last4,
-        })),
-      );
+    if (isOpen) {
+      fetchMyCards();
     }
-    fetchMyCards();
-  }, []);
-
-  async function onSubmit(data: CreateCardForm) {
-    await createUserCard({
-      cardId: data.cardId,
-      nickname: data.nickname,
-      last4: data.last4,
-    });
-    setIsOpen(false);
-    reset();
-    onCardCreated();
-    toast.success("新增成功");
-  }
-
-  function selectPreset(card: any) {
-    setValue("cardId", card.cardId);
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -86,48 +96,60 @@ export default function CreateCardDialog({
           <div className="flex-col space-y-4">
             <DialogTitle>新增卡片</DialogTitle>
             <h3 className="text-sm font-medium">選擇卡片</h3>
-            <div className="max-h-[62vh] overflow-y-auto pr-2 pb-2">
-              {data.cards.length > 0 && (
-                <div className="space-y-2">
-                  <div className="grid gap-4">
-                    {data.cards
-                      .filter(
+            {isLoading ? (
+              <div className="relative animate-pulse">
+                <div className="sm:-p-5 grid gap-4 rounded-xl border p-4 sm:grid-cols-5 sm:gap-6">
+                  <div className="h-40 rounded-xl bg-gray-100 sm:col-span-2"></div>
+                  <div className="space-y-3 sm:col-span-3">
+                    <div className="h-6 w-3/4 rounded-md bg-gray-100"></div>
+                    <div className="h-4 w-1/2 rounded-md bg-gray-100"></div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="max-h-[62vh] overflow-y-auto pr-2 pb-2">
+                {data.cards.length > 0 && (
+                  <div className="space-y-2">
+                    <div className="grid gap-4">
+                      {data.cards
+                        .filter(
+                          (card) =>
+                            !myCards.some(
+                              (myCard) => myCard.cardId === card.cardId,
+                            ),
+                        )
+                        .map((card, index) => (
+                          <div
+                            key={index}
+                            className="cursor-pointer"
+                            onClick={() => selectPreset(card)}
+                          >
+                            <Card
+                              id={card.cardId}
+                              className={
+                                watch("cardId") === card.cardId
+                                  ? "border-2 border-black"
+                                  : "border border-gray-200"
+                              }
+                            />
+                          </div>
+                        ))}
+
+                      {data.cards.filter(
                         (card) =>
                           !myCards.some(
                             (myCard) => myCard.cardId === card.cardId,
                           ),
-                      )
-                      .map((card, index) => (
-                        <div
-                          key={index}
-                          className="cursor-pointer"
-                          onClick={() => selectPreset(card)}
-                        >
-                          <Card
-                            id={card.cardId}
-                            className={
-                              watch("cardId") === card.cardId
-                                ? "border-2 border-black"
-                                : "border border-gray-200"
-                            }
-                          />
+                      ).length === 0 && (
+                        <div className="py-8 text-center text-sm text-gray-400">
+                          目前沒有可新增的卡片
                         </div>
-                      ))}
-
-                    {data.cards.filter(
-                      (card) =>
-                        !myCards.some(
-                          (myCard) => myCard.cardId === card.cardId,
-                        ),
-                    ).length === 0 && (
-                      <div className="py-8 text-center text-sm text-gray-400">
-                        目前沒有可新增的卡片
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
+            )}
           </div>
           <div className="grid gap-3">
             <Button

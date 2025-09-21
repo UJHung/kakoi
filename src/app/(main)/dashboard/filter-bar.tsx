@@ -20,8 +20,8 @@ export default function FilterBar({ onSearch }: Props) {
   const [isComposing, setIsComposing] = useState(false);
 
   // 搜尋/套用
-  function apply(tag?: string) {
-    const res = searchByKeyword(tag || q || "");
+  async function apply(tag?: string) {
+    const res = await searchByKeyword(tag || q || "");
     onSearch?.(res);
 
     const params = new URLSearchParams();
@@ -72,8 +72,6 @@ export default function FilterBar({ onSearch }: Props) {
           </Button>
         ))}
       </div>
-
-      {/* <Button onClick={() => apply()}>搜尋</Button> */}
     </div>
   );
 }
