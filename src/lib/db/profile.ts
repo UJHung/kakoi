@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { prisma } from "@/lib/db/prisma";
+import { supabaseAdmin } from "@/lib/supabase/server";
 
 export async function getOrCreateGuestProfile() {
   const cookieStore = await cookies();
@@ -12,20 +12,29 @@ export async function getOrCreateGuestProfile() {
   }
 
   try {
-    // 先嘗試使用標準 Prisma 查詢來查找配置檔
-    const existingProfile = await prisma.profile.findUnique({
-      where: { id: guestId },
-    });
+    // 先嘗試查找現有的配置檔
+    const { data: existingProfile, error: findError } = await supabaseAdmin
+      .from("Profile")
+      .select("*")
+      .eq("id", guestId)
+      .single();
 
-    // 如果找到配置檔，則返回它
-    if (existingProfile) {
+    // 如果找到配置檔且沒有錯誤，則返回它
+    if (existingProfile && !findError) {
       return existingProfile;
     }
 
     // 如果找不到配置檔，則創建一個新的
-    const newProfile = await prisma.profile.create({
-      data: { id: guestId, type: "GUEST" },
-    });
+    const { data: newProfile, error: createError } = await supabaseAdmin
+      .from("Profile")
+      .insert([{ id: guestId, type: "GUEST" }])
+      .select()
+      .single();
+
+    if (createError) {
+      console.error("Error creating profile:", createError);
+      throw createError;
+    }
 
     return newProfile;
   } catch (error) {
