@@ -5,12 +5,6 @@ import { searchByKeyword, searchByCategory } from "@/app/types/search";
 import { getMyCards } from "@/app/actions/cards";
 import { getCategories } from "@/lib/utils/card-data";
 
-/**
- * Hook 用於搜索優惠信息並排序（擁有的卡片優先）
- * @param query 搜索關鍵詞
- * @param categorySlug 分類標識
- * @returns { results, loading, error, categories } 優惠結果、載入狀態、錯誤信息和可用分類
- */
 export function useOffers(query?: string, categorySlug?: string) {
   const [results, setResults] = useState<
     { card: any; offer: any; userOwned?: boolean }[]
@@ -18,18 +12,22 @@ export function useOffers(query?: string, categorySlug?: string) {
   const [userCardIds, setUserCardIds] = useState<string[]>([]);
   const [categories, setCategories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [userCardsLoading, setUserCardsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   // 獲取用戶卡片
   useEffect(() => {
     async function fetchUserCards() {
       try {
+        setUserCardsLoading(true); // 開始載入用戶卡片
         const myCards = await getMyCards();
         const myCardIds = myCards.map((card) => card.cardId);
         setUserCardIds(myCardIds);
       } catch (err) {
         console.error("獲取用戶卡片失敗:", err);
         setError(err instanceof Error ? err.message : "未知錯誤");
+      } finally {
+        setUserCardsLoading(false); // 用戶卡片載入完成
       }
     }
 
@@ -51,8 +49,13 @@ export function useOffers(query?: string, categorySlug?: string) {
     loadCategories();
   }, []);
 
-  // 執行搜尋
+  // 執行搜尋 - 只有在用戶卡片載入完成後才執行
   useEffect(() => {
+    // 如果用戶卡片還在載入中，不執行搜尋
+    if (userCardsLoading) {
+      return;
+    }
+
     async function performSearch() {
       try {
         setLoading(true);
@@ -88,8 +91,7 @@ export function useOffers(query?: string, categorySlug?: string) {
     }
 
     performSearch();
-  }, [query, categorySlug, userCardIds]);
-
+  }, [query, categorySlug, userCardIds, userCardsLoading]); 
   // 獲取指定分類信息
   const selectedCategory =
     categorySlug && categories.length > 0
@@ -98,7 +100,7 @@ export function useOffers(query?: string, categorySlug?: string) {
 
   return {
     results,
-    loading,
+    loading: loading || userCardsLoading, // 任一載入中就是載入中
     error,
     categories,
     selectedCategory,
