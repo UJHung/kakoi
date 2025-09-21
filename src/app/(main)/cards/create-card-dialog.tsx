@@ -13,7 +13,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { createUserCard, getMyCards } from "@/app/actions/cards";
+import { addCard, getMyCards } from "@/app/actions/cards";
 import { MyCardProps } from "@/app/types/card";
 import data from "@/data/cards.json";
 
@@ -52,7 +52,7 @@ export default function CreateCardDialog({
   }, []);
 
   async function onSubmit(data: CreateCardForm) {
-    await createUserCard({
+    await addCard({
       cardId: data.cardId,
       nickname: data.nickname,
       last4: data.last4,

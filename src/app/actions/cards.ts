@@ -3,7 +3,7 @@
 import { getOrCreateGuestProfile } from "@/lib/db/profile";
 import { PrismaClient } from "@prisma/client";
 
-export async function createUserCard(data: {
+export async function addCard(data: {
   cardId: string;
   nickname?: string;
   last4?: string;
