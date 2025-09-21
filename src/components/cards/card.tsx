@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/utils";
 
 import { Badge } from "@/components/ui/badge";
 import ImageLoader from "@/components/common/image-loader";

@@ -1,5 +1,5 @@
 import type { UserCard } from "@prisma/client";
-import { getCardInfo } from "@/lib/card-data";
+import { getCardInfo } from "@/lib/utils/card-data";
 
 // cards.json 中的 offer 結構
 export type CardOfferProps = {

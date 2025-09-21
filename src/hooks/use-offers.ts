@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { searchByKeyword, searchByCategory } from "@/app/types/search";
 import { getMyCards } from "@/app/actions/cards";
-import { getCategories } from "@/lib/card-data";
+import { getCategories } from "@/lib/utils/card-data";
 
 /**
  * Hook 用於搜索優惠信息並排序（擁有的卡片優先）

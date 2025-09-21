@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/utils";
 import "./globals.css";
 
 const lineSeed = localFont({

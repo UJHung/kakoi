@@ -1,6 +1,6 @@
 "use server";
 
-import { getOrCreateGuestProfile } from "@/lib/profile";
+import { getOrCreateGuestProfile } from "@/lib/db/profile";
 import { PrismaClient } from "@prisma/client";
 
 export async function createUserCard(data: {

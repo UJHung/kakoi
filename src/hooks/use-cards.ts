@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getCardInfo } from "@/lib/card-data";
+import { getCardInfo } from "@/lib/utils/card-data";
 import { getMyCards } from "@/app/actions/cards";
 
 /**
