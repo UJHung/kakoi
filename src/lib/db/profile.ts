@@ -1,9 +1,5 @@
 import { cookies } from "next/headers";
-import { PrismaClient } from "@prisma/client";
-
-async function getRequestPrisma() {
-  return new PrismaClient();
-}
+import { prisma } from "@/lib/db/prisma";
 
 export async function getOrCreateGuestProfile() {
   const cookieStore = await cookies();
@@ -15,28 +11,25 @@ export async function getOrCreateGuestProfile() {
     throw new Error("guestId not found - middleware should have set it");
   }
 
-  // 為這個請求創建一個獨立的 Prisma 客戶端
-  const requestPrisma = await getRequestPrisma();
-
   try {
-    // 使用原始 SQL 查詢來避免 prepared statement 衝突
-    const profiles = await requestPrisma.$queryRaw`
-      SELECT id, type::text, "createdAt" FROM "Profile" WHERE id = ${guestId}
-    `;
+    // 先嘗試使用標準 Prisma 查詢來查找配置檔
+    const existingProfile = await prisma.profile.findUnique({
+      where: { id: guestId },
+    });
 
     // 如果找到配置檔，則返回它
-    if (profiles && Array.isArray(profiles) && profiles.length > 0) {
-      return profiles[0];
+    if (existingProfile) {
+      return existingProfile;
     }
 
     // 如果找不到配置檔，則創建一個新的
-    const newProfile = await requestPrisma.profile.create({
+    const newProfile = await prisma.profile.create({
       data: { id: guestId, type: "GUEST" },
     });
 
     return newProfile;
-  } finally {
-    // 確保斷開連接，釋放資源
-    await requestPrisma.$disconnect();
+  } catch (error) {
+    console.error("Error in getOrCreateGuestProfile:", error);
+    throw error;
   }
 }

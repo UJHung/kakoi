@@ -1,7 +1,7 @@
 "use server";
 
 import { getOrCreateGuestProfile } from "@/lib/db/profile";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/db/prisma";
 
 export async function addCard(data: {
   cardId: string;
@@ -10,11 +10,8 @@ export async function addCard(data: {
 }) {
   const profile = await getOrCreateGuestProfile();
 
-  // 為每個請求創建獨立的 Prisma 客戶端
-  const requestPrisma = new PrismaClient();
-
   try {
-    const card = await requestPrisma.userCard.create({
+    const card = await prisma.userCard.create({
       data: {
         cardId: data.cardId,
         nickname: data.nickname,
@@ -29,8 +26,9 @@ export async function addCard(data: {
     revalidatePath("/cards");
 
     return card;
-  } finally {
-    await requestPrisma.$disconnect();
+  } catch (error) {
+    console.error("Error adding card:", error);
+    throw error;
   }
 }
 
@@ -39,10 +37,6 @@ export async function getMyCards() {
   if (!profile) {
     throw new Error("尚未登入");
   }
-
-  // 為這個請求創建獨立的 Prisma 實例
-  const { PrismaClient } = await import("@prisma/client");
-  const prisma = new PrismaClient();
 
   try {
     const cards = await prisma.userCard.findMany({
@@ -55,8 +49,9 @@ export async function getMyCards() {
     });
 
     return cards;
-  } finally {
-    await prisma.$disconnect();
+  } catch (error) {
+    console.error("Error getting user cards:", error);
+    throw error;
   }
 }
 
@@ -64,29 +59,21 @@ export async function deleteCard(id: string) {
   try {
     const profile = await getOrCreateGuestProfile();
 
-    // 為每個請求創建獨立的 Prisma 客戶端
-    const requestPrisma = new PrismaClient();
+    // 刪除卡片（使用 cardId 欄位進行匹配）
+    const result = await prisma.userCard.deleteMany({
+      where: { cardId: id, profileId: profile.id },
+    });
 
-    try {
-      // 刪除卡片（使用 cardId 欄位進行匹配）
-      const result = await requestPrisma.userCard.deleteMany({
-        where: { cardId: id, profileId: profile.id },
-      });
-
-      if (result.count === 0) {
-        throw new Error("找不到要刪除的卡片或沒有權限刪除");
-      }
-
-      // 重新驗證相關頁面
-      const { revalidatePath } = await import("next/cache");
-      revalidatePath("/dashboard");
-      revalidatePath("/cards");
-
-      return { success: true };
-    } finally {
-      // 確保斷開連接，釋放資源
-      await requestPrisma.$disconnect();
+    if (result.count === 0) {
+      throw new Error("找不到要刪除的卡片或沒有權限刪除");
     }
+
+    // 重新驗證相關頁面
+    const { revalidatePath } = await import("next/cache");
+    revalidatePath("/dashboard");
+    revalidatePath("/cards");
+
+    return { success: true };
   } catch (error) {
     console.error("刪除卡片時發生錯誤:", error);
     throw error;
