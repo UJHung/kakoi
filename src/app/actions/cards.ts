@@ -1,7 +1,6 @@
 "use server";
 
 import { getOrCreateGuestProfile } from "@/lib/profile";
-import { withCache, invalidateCache } from "@/lib/cache";
 import { PrismaClient } from "@prisma/client";
 
 export async function createUserCard(data: {
@@ -24,12 +23,10 @@ export async function createUserCard(data: {
       },
     });
 
-    // 當新增卡片時，失效相關緩存
-    invalidateCache(`user_cards:${profile.id}`);
-
-    // 重新驗證儀表板頁面，確保它顯示最新資料
+    // 重新驗證相關頁面
     const { revalidatePath } = await import("next/cache");
     revalidatePath("/dashboard");
+    revalidatePath("/cards");
 
     return card;
   } finally {
@@ -39,32 +36,28 @@ export async function createUserCard(data: {
 
 export async function getMyCards() {
   const profile = await getOrCreateGuestProfile();
+  if (!profile) {
+    throw new Error("尚未登入");
+  }
 
-  // 使用緩存包裝查詢
-  return withCache(
-    `user_cards:${profile.id}`,
-    async () => {
-      // 為每個請求創建獨立的 Prisma 客戶端，避免 prepared statement 衝突
-      const requestPrisma = new PrismaClient();
+  // 為這個請求創建獨立的 Prisma 實例
+  const { PrismaClient } = await import("@prisma/client");
+  const prisma = new PrismaClient();
 
-      try {
-        // 使用原始 SQL 查詢來避免 prepared statement 問題
-        const results = await requestPrisma.$queryRaw`
-          SELECT id, "cardId", nickname, last4, "createdAt"
-          FROM "UserCard" 
-          WHERE "profileId" = ${profile.id}
-          ORDER BY "createdAt" DESC
-        `;
+  try {
+    const cards = await prisma.userCard.findMany({
+      where: {
+        profileId: profile.id,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
 
-        return Array.isArray(results) ? results : [];
-      } finally {
-        // 確保斷開連接，釋放資源
-        await requestPrisma.$disconnect();
-      }
-    },
-    // 緩存 5 分鐘
-    5 * 60 * 1000,
-  );
+    return cards;
+  } finally {
+    await prisma.$disconnect();
+  }
 }
 
 export async function deleteCard(id: string) {
@@ -75,7 +68,7 @@ export async function deleteCard(id: string) {
     const requestPrisma = new PrismaClient();
 
     try {
-      // 防護：只能刪自己的
+      // 刪除卡片（使用 cardId 欄位進行匹配）
       const result = await requestPrisma.userCard.deleteMany({
         where: { cardId: id, profileId: profile.id },
       });
@@ -84,12 +77,10 @@ export async function deleteCard(id: string) {
         throw new Error("找不到要刪除的卡片或沒有權限刪除");
       }
 
-      // 當刪除卡片時，失效相關緩存
-      invalidateCache(`user_cards:${profile.id}`);
-
-      // 重新驗證儀表板頁面，確保它顯示最新資料
+      // 重新驗證相關頁面
       const { revalidatePath } = await import("next/cache");
       revalidatePath("/dashboard");
+      revalidatePath("/cards");
 
       return { success: true };
     } finally {
