@@ -1,10 +1,11 @@
-import { cn } from "@/lib/utils";
+"use client";
 
-import { getCardInfo } from "@/app/types/card";
+import { cn } from "@/lib/utils";
 
 import { Badge } from "@/components/ui/badge";
 import ImageLoader from "@/components/image-loader";
 import Dropdown from "./dropdown-menu";
+import { useCardDetail } from "@/hooks/use-cards";
 
 export default function Card({
   id,
@@ -17,7 +18,26 @@ export default function Card({
   isDisplayOnly?: boolean;
   onRefresh?: () => void;
 }) {
-  const card = getCardInfo(id);
+  const { card, loading, error } = useCardDetail(id);
+  if (loading) {
+    return (
+      <div
+        className={cn(
+          "relative animate-pulse rounded-xl bg-white p-5 sm:p-4",
+          className,
+        )}
+      >
+        <div className="grid gap-4 sm:grid-cols-5 sm:gap-6">
+          <div className="h-40 rounded-xl bg-gray-100 sm:col-span-2"></div>
+          <div className="space-y-3 sm:col-span-3">
+            <div className="h-6 w-3/4 rounded-md bg-gray-100"></div>
+            <div className="h-4 w-1/2 rounded-md bg-gray-100"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (!card) return null;
 
   return (
