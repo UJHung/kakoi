@@ -6,13 +6,15 @@ import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 import ImageLoader from "@/components/common/image-loader";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import ExclusionDialog from "@/app/(main)/offers/exclusion-dialog";
 import FilterBar from "@/app/(main)/dashboard/filter-bar";
 import { useOffers } from "@/hooks/use-offers";
 import { useDisclosure } from "@/hooks/use-disclosure";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 export default function OffersClient() {
   const router = useRouter();
@@ -20,11 +22,22 @@ export default function OffersClient() {
   const q = sp.get("q");
   const categorySlug = sp.get("category");
 
+  // Switch 狀態 - 預設只顯示我的卡片
+  const [showMyCardsOnly, setShowMyCardsOnly] = useState(true);
+
   // 使用自定義 hook 獲取優惠資料
   const { results, loading, error, selectedCategory } = useOffers(
     q || undefined,
     categorySlug || undefined,
   );
+
+  // 根據 Switch 狀態過濾結果
+  const filteredResults = useMemo(() => {
+    if (showMyCardsOnly) {
+      return results.filter((result) => result.userOwned);
+    }
+    return results;
+  }, [results, showMyCardsOnly]);
 
   return (
     <div className="p-5">
@@ -40,8 +53,19 @@ export default function OffersClient() {
       </div>
 
       <div className="mt-6">
-        <h2 className="text-xl font-semibold">{q || selectedCategory?.name}</h2>
-
+        <data className="flex items-center justify-between">
+          <h2 className="text-xl font-semibold">
+            {q || selectedCategory?.name}
+          </h2>
+          <div className="flex cursor-pointer items-center space-x-2">
+            <Switch
+              id="my-cards"
+              checked={showMyCardsOnly}
+              onCheckedChange={setShowMyCardsOnly}
+            />
+            <Label htmlFor="my-cards">僅顯示我的卡片</Label>
+          </div>
+        </data>
         {loading ? (
           <div className="grid animate-pulse gap-6 pt-4">
             <div className="h-[160px] rounded-xl bg-white/50" />
@@ -50,7 +74,7 @@ export default function OffersClient() {
           </div>
         ) : (
           <ul className="mt-3 space-y-3">
-            {results.map((r, i) => (
+            {filteredResults.map((r, i) => (
               <Card
                 key={i}
                 card={r.card}
@@ -58,10 +82,10 @@ export default function OffersClient() {
                 userOwned={r.userOwned}
               />
             ))}
-            {results.length === 0 && (
+            {filteredResults.length === 0 && (
               <div className="pt-8 text-center text-sm">
                 <BiSearchAlt size="24" className="mb-2 inline" />
-                <div>尚無結果</div>
+                <div>{showMyCardsOnly ? "您尚未擁有相關卡片" : "尚無結果"}</div>
               </div>
             )}
             <div className="text-center">
