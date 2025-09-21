@@ -1,4 +1,3 @@
-import data from "@/data/cards.json";
 import { CardsDataset, CardProps, OfferProps } from "./card";
 
 export type Txn = {
@@ -9,9 +8,17 @@ export type Txn = {
 
 const norm = (s: string) => s.toLowerCase();
 
-export function searchByKeyword(q: string) {
+async function loadCardsData() {
+  const { default: data } = await import("@/data/cards.json");
+  return data;
+}
+
+export async function searchByKeyword(q: string) {
   const needle = norm(q);
   const results: { card: CardProps; offer: OfferProps }[] = [];
+
+  const data = await loadCardsData();
+
   for (const card of data.cards) {
     const allOffers = [...(card.offers || []), ...(card.other_benefits || [])];
     for (const offer of allOffers) {
@@ -32,9 +39,12 @@ export function searchByKeyword(q: string) {
   return results;
 }
 
-export function searchByCategory(categories: string[]) {
+export async function searchByCategory(categories: string[]) {
   const target = new Set(categories.map(norm));
   const results: { card: CardProps; offer: OfferProps }[] = [];
+
+  const data = await loadCardsData();
+
   for (const card of data.cards) {
     const allOffers = [...(card.offers || []), ...(card.other_benefits || [])];
     for (const offer of allOffers) {

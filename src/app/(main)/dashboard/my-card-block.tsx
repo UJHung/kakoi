@@ -7,6 +7,10 @@ import { getMyCards } from "@/app/actions/cards";
 import cardData from "@/data/cards.json";
 import ImageLoader from "@/components/image-loader";
 
+// 設置無緩存，確保每次請求都獲取最新資料
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function MyCardBlock() {
   const userCards = await getMyCards();
   const displayCards = userCards.map((userCard) => {
