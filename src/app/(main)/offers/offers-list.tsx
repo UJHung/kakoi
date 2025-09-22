@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, Suspense } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import { FiInfo } from "react-icons/fi";
 import { RiPokerHeartsFill } from "react-icons/ri";
@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 import ImageLoader from "@/components/common/image-loader";
+import LoadingCard from "@/components/common/loading-card";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
@@ -17,7 +18,7 @@ import FilterBar from "@/app/(main)/dashboard/filter-bar";
 import { useOffers } from "@/hooks/use-offers";
 import { useDisclosure } from "@/hooks/use-disclosure";
 
-export default function OffersClient() {
+export default function OffersList() {
   const router = useRouter();
   const sp = useSearchParams();
   const q = sp.get("q");
@@ -56,50 +57,37 @@ export default function OffersClient() {
   const isLoading = loading || switchLoading;
 
   return (
-    <div className="p-5">
-      {error && (
-        <div className="mb-4 rounded-md bg-red-50 p-3 text-red-800">
-          <p>載入優惠資訊時發生錯誤: {error}</p>
+    <div className="mt-6">
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-semibold">{q || selectedCategory?.name}</h2>
+        <div className="flex cursor-pointer items-center space-x-2">
+          <Switch
+            id="my-cards"
+            checked={showMyCardsOnly}
+            onCheckedChange={handleSwitchChange}
+            disabled={isLoading}
+          />
+          <Label
+            htmlFor="my-cards"
+            className={switchLoading ? "opacity-50" : ""}
+          >
+            僅顯示我的卡片
+          </Label>
         </div>
-      )}
-
-      <div className="rounded-lg bg-white p-5">
-        <h1 className="mb-3 text-2xl font-semibold">優惠速查</h1>
-        <FilterBar />
       </div>
 
-      <div className="mt-6">
-        <div className="flex items-center justify-between">
-          <h2 className="text-xl font-semibold">
-            {q || selectedCategory?.name}
-          </h2>
-          <div className="flex cursor-pointer items-center space-x-2">
-            <Switch
-              id="my-cards"
-              checked={showMyCardsOnly}
-              onCheckedChange={handleSwitchChange}
-              disabled={isLoading}
-            />
-            <Label
-              htmlFor="my-cards"
-              className={switchLoading ? "opacity-50" : ""}
-            >
-              僅顯示我的卡片
-            </Label>
-          </div>
+      {isLoading ? (
+        <div className="mt-4">
+          <LoadingCard />
         </div>
-
-        {isLoading ? (
-          <div className="relative mt-4 animate-pulse rounded-xl bg-white p-5 sm:p-4">
-            <div className="grid gap-4 sm:grid-cols-5 sm:gap-6">
-              <div className="h-40 rounded-xl bg-gray-100 sm:col-span-2"></div>
-              <div className="space-y-3 sm:col-span-3">
-                <div className="h-6 w-3/4 rounded-md bg-gray-100"></div>
-                <div className="h-4 w-1/2 rounded-md bg-gray-100"></div>
-              </div>
+      ) : (
+        <Suspense
+          fallback={
+            <div className="mt-4">
+              <LoadingCard />
             </div>
-          </div>
-        ) : (
+          }
+        >
           <ul className="mt-3 space-y-3">
             {filteredResults.map((r, i) => (
               <Card
@@ -127,8 +115,8 @@ export default function OffersClient() {
               </Button>
             </div>
           </ul>
-        )}
-      </div>
+        </Suspense>
+      )}
     </div>
   );
 }
@@ -171,7 +159,7 @@ const Card = ({
           {userOwned && (
             <RiPokerHeartsFill
               size="20"
-              className="absolute top-3 right-3 text-orange-300"
+              className="absolute top-3 left-3 text-orange-500"
             />
           )}
         </div>
