@@ -46,8 +46,8 @@ const CardContainer = ({
   onRefresh?: () => void;
 }) => {
   return (
-    <div className={cn("relative rounded-xl bg-white p-5 sm:p-4", className)}>
-      <div className="grid gap-4 sm:grid-cols-5 sm:gap-6">
+    <div className={cn("relative rounded-xl bg-white p-4 sm:p-5", className)}>
+      <div className="grid gap-3 sm:grid-cols-5 sm:gap-6">
         <div className="sm:col-span-2">
           <ImageLoader
             src={card.cardImage || "/cards/default-card.png"}
@@ -66,7 +66,7 @@ const CardContainer = ({
           <div className="text-lg font-semibold">{card.name}</div>
           <div className="text-gray-500">{card.issuer}</div>
 
-          <ul className="mt-3 list-['·_'] space-y-1 pl-3 text-xs text-gray-600">
+          <ul className="mt-3 hidden list-['·_'] space-y-1 pl-3 text-xs text-gray-600 sm:block">
             {card.remarks &&
               card.remarks.map((remark, index) => (
                 <li key={index}>{remark}</li>
