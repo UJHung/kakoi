@@ -86,7 +86,12 @@ export function bestCardFor(
         if (level && offer.rate[level] != null) rate = offer.rate[level];
         else {
           // fallback: max available
-          rate = Math.max(...Object.values(offer.rate));
+          const numericValues = Object.values(offer.rate).filter((val): val is number => 
+  typeof val === 'number' && !isNaN(val)
+);
+
+// 確保至少有一個值，否則使用預設值 (例如 0)
+rate = numericValues.length > 0 ? Math.max(...numericValues) : 0;
         }
       } else if ((offer as any).rate?.flat) {
         rate = (offer as any).rate.flat;
