@@ -7,7 +7,10 @@ import Card from "@/components/cards/card";
 import { LoadingCard } from "@/components/common/loading-card";
 import CreateCardDialog from "./create-card-dialog";
 
-export default async function CardsPage() {
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+export default async function Page() {
   async function refreshCards() {
     "use server";
     revalidatePath("/cards");
