@@ -15,6 +15,7 @@ const lineSeed = localFont({
 export const metadata: Metadata = {
   title: "KAKOi",
   description: "卡在KAKOi，優惠都可以",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://kakoi.app"),
   openGraph: {
     images: ["/image-seo.png"],
   },
