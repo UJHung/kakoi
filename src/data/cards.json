@@ -3417,6 +3417,335 @@
       "switch": {
         "required": false
       }
+    },
+    {
+      "cardId": "esun_ubear",
+      "cardImage": "/cards/esun-ubear.png",
+      "issuer": "玉山銀行",
+      "name": "玉山 UBear",
+      "period": { "start": "2025-09-01", "end": "2026-02-28" },
+      "points": { "unit": "cash" },
+      "levels": {},
+      "offers": [
+        {
+          "id": "ubear_general",
+          "name": "一般消費",
+          "category": ["general"],
+          "rate": { "SIMPLE": 0.025 },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": ["一般消費"],
+          "note": "國內外一般消費享1%現金回饋",
+          "exclusions": [
+            {
+              "path_name": "一般消費",
+              "contents": [
+                "本優惠需持玉山Ｕ Bear信用卡刷卡之消費才可享有。",
+                "回饋無上限，於當期帳單直接折抵。",
+                "Disney+、Nintendo、PlayStation、Netflix不列入一般消費回饋計算。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ubear_mobile_wallet",
+          "name": "行動支付",
+          "category": ["mobile_wallet"],
+          "rate": { "SIMPLE": 0.01, "BONUS": 0.02 },
+          "calc_rules": {
+            "unlimited": false,
+            "cap_per_month": 150,
+            "cap_unit": "cash"
+          },
+          "keywords": [
+            "line pay",
+            "街口支付",
+            "悠遊付",
+            "open錢包",
+            "icash pay",
+            "全盈+pay",
+            "全支付",
+            "橘子支付",
+            "skm pay",
+            "中油pay",
+            "玉山wallet",
+            "pi 拍錢包",
+            "歐付寶行動支付",
+            "paypal",
+            "hami pay掃碼付"
+          ],
+          "note": "LINE Pay｜街口支付｜悠遊付｜OPEN錢包｜icash Pay｜全盈+PAY｜全支付｜橘子支付｜ skm pay｜中油Pay｜玉山Wallet｜Pi 拍錢包｜歐付寶行動支付｜PayPal｜Hami Pay掃碼付",
+          "exclusions": [
+            {
+              "path_name": "行動支付",
+              "contents": [
+                "網購最高3%現金回饋，包含基本回饋1%及網購加碼2%。",
+                "網購加碼2%需綁定帳單e化 (Email電子帳單/簡訊帳單) 才享回饋。",
+                "My FamiPay、全聯PX Pay、台灣pay不適用。",
+                "網購加碼2%回饋採正附卡合併計算，每期回饋上限150元，如加碼2%達回饋上限，則符合活動回饋資格之交易僅享基本回饋1%。",
+                "網購加碼2%特店分期交易以分期交易總金額計算1次。",
+                "保費、超商 (包含綁定玉山Wallet之超商消費) 、小額支付平台及指定影音娛樂平台 (Disney+、Nintendo、PlayStation、Netflix) 之線上交易，不列入網購回饋計算。",
+                "若綁定玉山Ｕ Bear信用卡於Apple Pay、Google Pay及Samsung Pay至實體門市交易，視為實體卡交易，不列入網購回饋計算。"
+              ]
+            },
+            {
+              "path_name": "LINE Pay",
+              "contents": ["7-ELEVEN、全家不適用"]
+            },
+            {
+              "path_name": "街口支付",
+              "contents": ["繳費及非消費性款項不適用"]
+            },
+            {
+              "path_name": "悠遊付",
+              "contents": ["政府服務、學校服務、便利商店不適用"]
+            },
+            {
+              "path_name": "OPEN錢包、icash Pay",
+              "contents": ["便利商店不適用"]
+            },
+            {
+              "path_name": "全盈+PAY",
+              "contents": ["便利商店、全聯、APP繳費不適用"]
+            },
+            {
+              "path_name": "全支付",
+              "contents": [
+                "全聯、全電商、APP繳費、 7-ELEVEN、全家、萊爾富不適用"
+              ]
+            },
+            {
+              "path_name": "玉山Wallet",
+              "contents": ["便利商店、玉山電子支付綁定信用卡不適用"]
+            },
+            {
+              "path_name": "Pi 拍錢包",
+              "contents": [
+                "Pi拍錢包通路之一般消費定義依本行Pi拍錢包信用卡網站公告為準"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ubear_eccommerce",
+          "name": "線上購物平台",
+          "category": ["ecommerce"],
+          "rate": { "SIMPLE": 0.01, "BONUS": 0.02 },
+          "calc_rules": {
+            "unlimited": false,
+            "cap_per_month": 150,
+            "cap_unit": "cash"
+          },
+          "keywords": [
+            "網購",
+            "pchome",
+            "momo購物網",
+            "蝦皮",
+            "coupang酷澎",
+            "yahoo購物中心/拍賣",
+            "淘寶",
+            "露天",
+            "博客來",
+            "全電商",
+            "生活市集",
+            "松果購物",
+            "誠品網路書店",
+            "friday購物",
+            "udn售票網",
+            "gomaji",
+            "17life",
+            "樂天市場",
+            "citiesocial",
+            "91-app",
+            "媽咪愛",
+            "屈臣氏網路商城",
+            "康是美線上商城",
+            "家樂福線上購物",
+            "神腦商城",
+            "燦坤線上購物",
+            "瘋狂賣客",
+            "myfone購物",
+            "486團購網",
+            "86小舖",
+            "小三美日",
+            "apple官網",
+            "studio a官網",
+            "straight a官網",
+            "台灣小米",
+            "台灣索尼股份有限公司",
+            "良興eclife購物網",
+            "isunfar愛順發3c購物網",
+            "迪卡儂線上購物",
+            "拓元售票系統",
+            "zara",
+            "h&m",
+            "gu網路商店",
+            "uniqlo網路商店",
+            "ob 嚴選",
+            "lativ米格國際",
+            "genquo",
+            "zalora",
+            "mos線上儲值",
+            "星巴克線上儲值",
+            "ibon售票系統",
+            "ibon mart 統一超商線上購物中心",
+            "eztable",
+            "pinkoi"
+          ],
+          "note": "PChome｜momo購物網｜蝦皮｜Coupang酷澎｜Yahoo購物中心/拍賣｜淘寶｜露天｜博客來｜全電商｜生活市集｜松果購物｜誠品網路書店｜friDay購物｜ udn售票網｜ GOMAJI｜17Life｜樂天市場｜citiesocial｜91-APP｜媽咪愛｜屈臣氏網路商城｜康是美線上商城｜家樂福線上購物｜神腦商城｜燦坤線上購物｜瘋狂賣客｜myfone購物｜486團購網｜86小舖｜小三美日｜Apple官網｜STUDIO A官網｜Straight A官網｜台灣小米｜台灣索尼股份有限公司｜良興Eclife購物網｜isunfar愛順發3C購物網｜迪卡儂線上購物｜拓元售票系統｜ZARA｜H&M｜GU網路商店｜UNIQLO網路商店｜OB 嚴選｜lativ米格國際｜GENQUO｜ZALORA｜MOS線上儲值｜星巴克線上儲值｜ibon售票系統｜ibon mart 統一超商線上購物中心｜EZTABLE、Pinkoi",
+          "exclusions": [
+            {
+              "path_name": "線上購物平台",
+              "contents": [
+                "網購最高3%現金回饋，包含基本回饋1%及網購加碼2%。",
+                "網購加碼2%需綁定帳單e化 (Email電子帳單/簡訊帳單) 才享回饋。",
+                "網購加碼2%回饋採正附卡合併計算，每期回饋上限150元，如加碼2%達回饋上限，則符合活動回饋資格之交易僅享基本回饋1%。",
+                "網購加碼2%特店分期交易以分期交易總金額計算1次。",
+                "保費、超商 (包含綁定玉山Wallet之超商消費) 、小額支付平台及指定影音娛樂平台 (Disney+、Nintendo、PlayStation、Netflix) 之線上交易，不列入網購回饋計算。",
+                "若綁定玉山Ｕ Bear信用卡於Apple Pay、Google Pay及Samsung Pay至實體門市交易，視為實體卡交易，不列入網購回饋計算。",
+                "AMAZON、日本露天、Apple官網分期、東森購物與森森購物不適用。"
+              ]
+            },
+            {
+              "path_name": "露天",
+              "contents": ["日本露天不適用"]
+            },
+            {
+              "path_name": "全電商",
+              "contents": ["全支付、PX Pay付款不適用"]
+            },
+            {
+              "path_name": "Apple官網",
+              "contents": ["分期不適用"]
+            },
+            {
+              "path_name": "ibon售票系統",
+              "contents": ["限線上刷卡適用"]
+            }
+          ]
+        },
+        {
+          "id": "ubear_transport",
+          "name": "交通",
+          "category": ["transport"],
+          "rate": { "SIMPLE": 0.01, "BONUS": 0.02 },
+          "calc_rules": {
+            "unlimited": false,
+            "cap_per_month": 150,
+            "cap_unit": "cash"
+          },
+          "keywords": ["55688", "uber", "小黃", "高鐵", "台鐵"],
+          "note": "55688 APP｜Uber｜呼叫小黃｜台灣高鐵T-EX行動購票｜台鐵線上購票",
+          "exclusions": [
+            {
+              "path_name": "交通",
+              "contents": [
+                "網購最高3%現金回饋，包含基本回饋1%及網購加碼2%。",
+                "網購加碼2%需綁定帳單e化 (Email電子帳單/簡訊帳單) 才享回饋。",
+                "網購加碼2%回饋採正附卡合併計算，每期回饋上限150元，如加碼2%達回饋上限，則符合活動回饋資格之交易僅享基本回饋1%。",
+                "若綁定玉山Ｕ Bear信用卡於Apple Pay、Google Pay及Samsung Pay至實體門市交易，視為實體卡交易，不列入網購回饋計算。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ubear_transport",
+          "name": "旅遊住宿/航空",
+          "category": ["hotel", "airlines"],
+          "rate": { "SIMPLE": 0.01, "BONUS": 0.02 },
+          "calc_rules": {
+            "unlimited": false,
+            "cap_per_month": 150,
+            "cap_unit": "cash"
+          },
+          "keywords": [
+            "agoda",
+            "hotels.com",
+            "expedia",
+            "klook",
+            "kkday",
+            "booking.com",
+            "airbnb",
+            "中華航空",
+            "長榮航空",
+            "台灣虎航"
+          ],
+          "note": "ezTravel｜Agoda｜Hotels.com｜Expedia｜Klook｜kkday｜booking.com｜AIRBNB｜ 中華航空｜長榮航空｜台灣虎航",
+          "exclusions": [
+            {
+              "path_name": "旅遊住宿/航空",
+              "contents": [
+                "網購最高3%現金回饋，包含基本回饋1%及網購加碼2%。",
+                "網購加碼2%需綁定帳單e化 (Email電子帳單/簡訊帳單) 才享回饋。",
+                "網購加碼2%回饋採正附卡合併計算，每期回饋上限150元，如加碼2%達回饋上限，則符合活動回饋資格之交易僅享基本回饋1%。",
+                "若綁定玉山Ｕ Bear信用卡於Apple Pay、Google Pay及Samsung Pay至實體門市交易，視為實體卡交易，不列入網購回饋計算。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ubear_food_delivery",
+          "name": "外送平台",
+          "category": ["food_delivery"],
+          "rate": { "SIMPLE": 0.01, "BONUS": 0.02 },
+          "calc_rules": {
+            "unlimited": false,
+            "cap_per_month": 150,
+            "cap_unit": "cash"
+          },
+          "keywords": ["ubereats", "foodpanda", "foodomo", "lalamove", "你訂"],
+          "note": "Uber Eats｜foodpanda｜foodomo｜lalamove｜你訂",
+          "exclusions": [
+            {
+              "path_name": "外送平台",
+              "contents": [
+                "網購最高3%現金回饋，包含基本回饋1%及網購加碼2%。",
+                "網購加碼2%需綁定帳單e化 (Email電子帳單/簡訊帳單) 才享回饋。",
+                "網購加碼2%回饋採正附卡合併計算，每期回饋上限150元，如加碼2%達回饋上限，則符合活動回饋資格之交易僅享基本回饋1%。",
+                "若綁定玉山Ｕ Bear信用卡於Apple Pay、Google Pay及Samsung Pay至實體門市交易，視為實體卡交易，不列入網購回饋計算。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ubear_ott",
+          "name": "線上娛樂",
+          "category": ["ott"],
+          "rate": { "SIMPLE": 0.01, "BONUS": 0.02 },
+          "calc_rules": {
+            "unlimited": false,
+            "cap_per_month": 150,
+            "cap_unit": "cash"
+          },
+          "keywords": ["kkbox", "itunes", "google play", "funnow"],
+          "note": "KKBOX｜iTunes｜Google Play｜Funnow",
+          "exclusions": [
+            {
+              "path_name": "線上娛樂",
+              "contents": [
+                "信用卡定期定額扣繳不適用。",
+                "網購最高3%現金回饋，包含基本回饋1%及網購加碼2%。",
+                "網購加碼2%需綁定帳單e化 (Email電子帳單/簡訊帳單) 才享回饋。",
+                "網購加碼2%回饋採正附卡合併計算，每期回饋上限150元，如加碼2%達回饋上限，則符合活動回饋資格之交易僅享基本回饋1%。"
+              ]
+            }
+          ]
+        }
+      ],
+      "general_rate": 0.01,
+      "remarks": [
+        "適用期間：2025/9/1 - 2026/2/28之消費。",
+        "國內外一般消費享1%現金回饋。",
+        "網購最高享3%現金回饋 (含基本回饋1%+網購加碼2%)，需綁定帳單e化 (Email電子帳單/簡訊帳單) 才享回饋。"
+      ],
+      "links": {
+        "offer": "https://www.esunbank.com/zh-tw/personal/credit-card/intro/bank-card/u-bear",
+        "switch": ""
+      },
+      "switch": {
+        "required": false
+      }
     }
   ]
 }
