@@ -3177,6 +3177,253 @@
         "applies_to_local": ["00:00", "23:59"],
         "anchor_local": "month_end"
       }
+    },
+    {
+      "cardId": "esun_kumamon",
+      "cardImage": "/cards/esun-kumamon.png",
+      "issuer": "玉山銀行",
+      "name": "玉山熊本熊卡",
+      "period": { "start": "2025-07-01", "end": "2025-12-31" },
+      "points": { "unit": "cash" },
+      "levels": {},
+      "offers": [
+        {
+          "id": "kumamon_japan_general",
+          "name": "日本一般消費",
+          "category": ["travel", "overseas", "general"],
+          "rate": { "SIMPLE": 0.025, "EXCHANGE": 0.015 },
+          "calc_rules": {
+            "unlimited": true
+          },
+          "keywords": ["日本", "熊本熊"],
+          "note": "日本一般消費",
+          "exclusions": [
+            {
+              "path_name": "日本地區消費",
+              "contents": [
+                "本優惠需持玉山熊本熊卡於日本地區(含商店收單行為日本地區之特店)刷卡之消費始符合回饋資格。如使用熊本熊卡於Agoda、Booking.com、Trip.com等國外訂房網訂購日本飯店，但請款特店為日本地區以外之特店，則不符合回饋資格。",
+                "若特店設立於百貨公司、飯店、酒店、旅館、賣場、商場、車站及美食街等，以致帳單名稱無法判別為該特店，將不列入回饋計算。",
+                "持玉山熊本熊卡(含一般卡與雙幣卡)且符合日本一般2.5%條件之日幣消費金額，依帳款清算日前1營業日之本行匯率折合約當新臺幣回饋。",
+                "2025/7/1起玉山熊本熊雙幣卡(含向左左、很友好)於國外消費，需收取1.5%國外交易服務費並且以日圓繳款。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "kumamon_japan_selected",
+          "name": "指定日本商店消費",
+          "category": [
+            "travel",
+            "general",
+            "overseas",
+            "transport",
+            "airlines",
+            "hotel"
+          ],
+          "rate": { "SIMPLE": 0.025, "BONUS": 0.06, "EXCHANGE": 0.015 },
+          "calc_rules": {
+            "unlimited": false,
+            "cap_per_month": 500,
+            "cap_unit": "cash"
+          },
+          "keywords": [
+            "日本",
+            "熊本熊",
+            "SUICA",
+            "PASMO",
+            "ICOCA",
+            "日本航空",
+            "JR",
+            "樂天旅遊",
+            "東橫INN",
+            "APA",
+            "TOYOTA Rent a Car",
+            "Times CAR RENTAL",
+            "NIPPON RENT-A-CAR"
+          ],
+          "note": "日本三大交通卡(SUICA、PASMO、ICOCA)儲值｜ 日本航空｜JR 鐵路公司｜日本三大住宿(樂天旅遊、東橫INN、APA)｜日本三大租車公司(TOYOTA Rent a Car、Times CAR RENTAL、NIPPON RENT-A-CAR)",
+          "exclusions": [
+            {
+              "path_name": "指定日本商店消費",
+              "contents": [
+                "含日本一般消費2.5%+指定日本商店加碼6%。",
+                "加碼6%每歸戶每期回饋上限500元，於當期帳單直接折抵",
+                "活動需登錄且活動期間內僅需登錄1次。",
+                "指定日本商店依當地指定日本商店刷卡後所帶之特店名稱判定。",
+                "若特店設立於百貨公司、飯店、酒店、旅館、賣場、商場、車站及美食街等，以致帳單名稱無法判別為該特店，將不列入回饋計算。",
+                "持玉山熊本熊卡(含一般卡與雙幣卡)且符合日本一般2.5%條件之日幣消費金額，依帳款清算日前1營業日之本行匯率折合約當新臺幣回饋。",
+                "2025/7/1起玉山熊本熊雙幣卡(含向左左、很友好)於國外消費，需收取1.5%國外交易服務費並且以日圓繳款。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "kumamon_japan_selected",
+          "name": "指定日本商店消費",
+          "category": [
+            "travel",
+            "overseas",
+            "general",
+            "grocery_hyper",
+            "pharmacy"
+          ],
+          "rate": { "SIMPLE": 0.025, "BONUS": 0.06, "EXCHANGE": 0.015 },
+          "calc_rules": {
+            "unlimited": false,
+            "cap_per_month": 500,
+            "cap_unit": "cash"
+          },
+          "keywords": [
+            "日本",
+            "熊本熊",
+            "BicCamera",
+            "Yodobashi",
+            "松本清",
+            "唐吉軻德",
+            "大國藥妝",
+            "無印",
+            "niko and…",
+            "3 coins"
+          ],
+          "note": "BicCamera｜Yodobashi｜松本清｜唐吉軻德｜大國藥妝｜無印｜niko and…｜3 coins",
+          "exclusions": [
+            {
+              "path_name": "指定日本商店消費",
+              "contents": [
+                "含日本一般消費2.5%+指定日本商店加碼6%。",
+                "加碼6%每歸戶每期回饋上限500元，於當期帳單直接折抵",
+                "活動需登錄且活動期間內僅需登錄1次。",
+                "指定日本商店依當地指定日本商店刷卡後所帶之特店名稱判定。",
+                "若特店設立於百貨公司、飯店、酒店、旅館、賣場、商場、車站及美食街等，以致帳單名稱無法判別為該特店，將不列入回饋計算。",
+                "持玉山熊本熊卡(含一般卡與雙幣卡)且符合日本一般2.5%條件之日幣消費金額，依帳款清算日前1營業日之本行匯率折合約當新臺幣回饋。",
+                "2025/7/1起玉山熊本熊雙幣卡(含向左左、很友好)於國外消費，需收取1.5%國外交易服務費並且以日圓繳款。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "kumamon_japan_selected",
+          "name": "指定日本商店消費",
+          "category": ["travel", "overseas", "general", "dining"],
+          "rate": { "SIMPLE": 0.025, "BONUS": 0.06, "EXCHANGE": 0.015 },
+          "calc_rules": {
+            "unlimited": false,
+            "cap_per_month": 500,
+            "cap_unit": "cash"
+          },
+          "keywords": [
+            "日本",
+            "熊本熊",
+            "DOUTOR Coffee",
+            "Fuglen",
+            "松屋",
+            "SUKIYA",
+            "勝烈亭",
+            "敘敘苑",
+            "牛角",
+            "shake shack",
+            "壽司郎",
+            "藏壽司"
+          ],
+          "note": "DOUTOR Coffee｜Fuglen｜松屋｜SUKIYA｜勝烈亭｜敘敘苑｜牛角｜shake shack｜壽司郎｜藏壽司",
+          "exclusions": [
+            {
+              "path_name": "指定日本商店消費",
+              "contents": [
+                "含日本一般消費2.5%+指定日本商店加碼6%。",
+                "加碼6%每歸戶每期回饋上限500元，於當期帳單直接折抵",
+                "活動需登錄且活動期間內僅需登錄1次。",
+                "指定日本商店依當地指定日本商店刷卡後所帶之特店名稱判定。",
+                "若特店設立於百貨公司、飯店、酒店、旅館、賣場、商場、車站及美食街等，以致帳單名稱無法判別為該特店，將不列入回饋計算。",
+                "持玉山熊本熊卡(含一般卡與雙幣卡)且符合日本一般2.5%條件之日幣消費金額，依帳款清算日前1營業日之本行匯率折合約當新臺幣回饋。",
+                "2025/7/1起玉山熊本熊雙幣卡(含向左左、很友好)於國外消費，需收取1.5%國外交易服務費並且以日圓繳款。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "kumamon_japan_selected",
+          "name": "指定日本商店消費",
+          "category": ["travel", "overseas", "general", "theme_park"],
+          "rate": { "SIMPLE": 0.025, "BONUS": 0.06, "EXCHANGE": 0.015 },
+          "calc_rules": {
+            "unlimited": false,
+            "cap_per_month": 500,
+            "cap_unit": "cash"
+          },
+          "keywords": [
+            "日本",
+            "熊本熊",
+            "東京迪士尼樂園",
+            "日本環球影城",
+            "豪斯登堡",
+            "富士急樂園",
+            "東京華納兄弟哈利波特影城",
+            "名古屋樂高樂園",
+            "橫濱八景島海洋樂園"
+          ],
+          "note": "東京迪士尼樂園｜日本環球影城｜豪斯登堡｜富士急樂園｜東京華納兄弟哈利波特影城｜名古屋樂高樂園｜橫濱八景島海洋樂園",
+          "exclusions": [
+            {
+              "path_name": "指定日本商店消費",
+              "contents": [
+                "含日本一般消費2.5%+指定日本商店加碼6%。",
+                "加碼6%每歸戶每期回饋上限500元，於當期帳單直接折抵",
+                "活動需登錄且活動期間內僅需登錄1次。",
+                "指定日本商店依當地指定日本商店刷卡後所帶之特店名稱判定。",
+                "若特店設立於百貨公司、飯店、酒店、旅館、賣場、商場、車站及美食街等，以致帳單名稱無法判別為該特店，將不列入回饋計算。",
+                "持玉山熊本熊卡(含一般卡與雙幣卡)且符合日本一般2.5%條件之日幣消費金額，依帳款清算日前1營業日之本行匯率折合約當新臺幣回饋。",
+                "2025/7/1起玉山熊本熊雙幣卡(含向左左、很友好)於國外消費，需收取1.5%國外交易服務費並且以日圓繳款。"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "kumamon_japan_paypay",
+          "name": "日本PayPay",
+          "category": ["travel", "overseas", "mobile_wallet"],
+          "rate": { "SIMPLE": 0.035 },
+          "calc_rules": {
+            "unlimited": false,
+            "cap_per_month": 100,
+            "cap_unit": "cash"
+          },
+          "keywords": ["日本", "熊本熊", "paypay"],
+          "note": "綁定玉山Wallet日本PayPay消費",
+          "exclusions": [
+            {
+              "path_name": "綁定玉山Wallet電子支付於日本PayPay消費",
+              "contents": [
+                "本優惠需持玉山熊本熊卡綁定玉山Wallet電子支付於日本PayPay通路消費，始符合回饋資格，使用玉山Wallet電子支付於國內交易恕不符合回饋資格。",
+                "日本PayPay消費3.5%皆享專屬優惠，不適用玉山熊本熊卡國內一般消費、日本一般消費、指定日本商店消費加碼回饋，亦不另累計紅利點數。",
+                "本服務為新臺幣扣款，使用日圓雙幣卡(含向左左、很友好)亦同，交易金額將依消費當下玉山Wallet APP上顯示之匯率及新臺幣金額扣款，退款亦與原訂單付款匯率與金額相同，款項將退款至您的原信用卡。",
+                "現金回饋於當期帳單直接折抵一般消費，每期現金回饋採逐筆無條件捨去法計算至新臺幣元，限按沖銷順序直接折抵當期新增一般消費款且不可申請退回，亦不可兌換現金，正、附卡合併依歸戶回饋。"
+              ]
+            }
+          ]
+        }
+      ],
+      "general_rate": 0.01,
+      "remarks": [
+        "適用期間：2025/7/1 - 2025/12/31之消費。",
+        "優惠內容皆以一般消費最高1%無上限（需同時申請帳單e化與玉山銀行台幣帳戶自扣）為例，實際回饋依持卡人消費而異。",
+        "日本一般消費享2.5%現金回饋，需收取1.5%國外交易服務費且以日圓繳款。",
+        "日本PayPay消費3.5%+免收1.5%國外交易服務費"
+      ],
+      "links": {
+        "offer": "https://www.esunbank.com/zh-tw/personal/credit-card/intro/bank-card/kumamon_card",
+        "switch": null
+      },
+      "switch": {
+        "required": false,
+        "timezone": null,
+        "unit": null,
+        "selection_method": null,
+        "max_changes_per_unit": null,
+        "effective": null,
+        "applies_to_local": null,
+        "anchor_local": null
+      }
     }
   ]
 }
