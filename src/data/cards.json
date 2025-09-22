@@ -3412,17 +3412,10 @@
       ],
       "links": {
         "offer": "https://www.esunbank.com/zh-tw/personal/credit-card/intro/bank-card/kumamon_card",
-        "switch": null
+        "switch": ""
       },
       "switch": {
-        "required": false,
-        "timezone": null,
-        "unit": null,
-        "selection_method": null,
-        "max_changes_per_unit": null,
-        "effective": null,
-        "applies_to_local": null,
-        "anchor_local": null
+        "required": false
       }
     }
   ]
