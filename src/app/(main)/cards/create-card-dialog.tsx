@@ -67,8 +67,8 @@ export default function CreateCardDialog({
     }
   }
 
-  const selectPreset = (card: CardProps) => {
-    setValue("cardId", card.cardId);
+  const selectPreset = (cardId: string) => {
+    setValue("cardId", cardId);
   };
 
   useEffect(() => {
@@ -114,7 +114,7 @@ export default function CreateCardDialog({
                           <div
                             key={index}
                             className="cursor-pointer"
-                            onClick={() => selectPreset(card)}
+                            onClick={() => selectPreset(card.cardId)}
                           >
                             <Card
                               id={card.cardId}
