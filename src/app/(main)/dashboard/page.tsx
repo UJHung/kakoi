@@ -6,6 +6,9 @@ import MyCardBlock from "./my-card-block";
 import { categories } from "@/data/dashboard";
 import { LoadingSmallCards } from "@/components/common/loading-card";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function Page() {
   return (
     <div className="space-y-4 p-5 sm:space-y-6">
