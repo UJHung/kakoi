@@ -12,7 +12,7 @@ export default function RootLayout({
       <HeaderBar />
       {children}
       <Nav />
-      <Toaster position="bottom-center" />
+      <Toaster position="top-center" />
     </div>
   );
 }
