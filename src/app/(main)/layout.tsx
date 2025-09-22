@@ -1,4 +1,5 @@
 import Nav from "@/components/common/navbar";
+import Footer from "@/components/common/footer";
 import HeaderBar from "@/components/common/header-bar";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -12,6 +13,7 @@ export default function RootLayout({
       <HeaderBar />
       {children}
       <Nav />
+      <Footer />
       <Toaster position="top-center" />
     </div>
   );

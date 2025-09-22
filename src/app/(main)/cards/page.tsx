@@ -17,7 +17,7 @@ export default async function Page() {
   }
 
   return (
-    <div className="space-y-5 p-5 sm:space-y-6">
+    <div className="min-h-[90vh] space-y-5 p-5 sm:space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold">我的卡片</h1>
         <CreateCardDialog onCardCreated={refreshCards} size="icon" />
