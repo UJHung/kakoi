@@ -3191,7 +3191,7 @@
           "id": "kumamon_japan_general",
           "name": "日本一般消費",
           "category": ["travel", "overseas", "general"],
-          "rate": { "SIMPLE": 0.025, "EXCHANGE": 0.015 },
+          "rate": { "SIMPLE": 0.025 },
           "calc_rules": {
             "unlimited": true
           },
@@ -3220,7 +3220,7 @@
             "airlines",
             "hotel"
           ],
-          "rate": { "SIMPLE": 0.025, "BONUS": 0.06, "EXCHANGE": 0.015 },
+          "rate": { "SIMPLE": 0.025, "BONUS": 0.06 },
           "calc_rules": {
             "unlimited": false,
             "cap_per_month": 500,
@@ -3267,7 +3267,7 @@
             "grocery_hyper",
             "pharmacy"
           ],
-          "rate": { "SIMPLE": 0.025, "BONUS": 0.06, "EXCHANGE": 0.015 },
+          "rate": { "SIMPLE": 0.025, "BONUS": 0.06 },
           "calc_rules": {
             "unlimited": false,
             "cap_per_month": 500,
@@ -3305,7 +3305,7 @@
           "id": "kumamon_japan_selected",
           "name": "指定日本商店消費",
           "category": ["travel", "overseas", "general", "dining"],
-          "rate": { "SIMPLE": 0.025, "BONUS": 0.06, "EXCHANGE": 0.015 },
+          "rate": { "SIMPLE": 0.025, "BONUS": 0.06 },
           "calc_rules": {
             "unlimited": false,
             "cap_per_month": 500,
@@ -3345,7 +3345,7 @@
           "id": "kumamon_japan_selected",
           "name": "指定日本商店消費",
           "category": ["travel", "overseas", "general", "theme_park"],
-          "rate": { "SIMPLE": 0.025, "BONUS": 0.06, "EXCHANGE": 0.015 },
+          "rate": { "SIMPLE": 0.025, "BONUS": 0.06 },
           "calc_rules": {
             "unlimited": false,
             "cap_per_month": 500,
@@ -3382,7 +3382,7 @@
           "id": "kumamon_japan_paypay",
           "name": "日本PayPay",
           "category": ["travel", "overseas", "mobile_wallet"],
-          "rate": { "SIMPLE": 0.035 },
+          "rate": { "SIMPLE": 0.035, "EXCHANGE": 0.015 },
           "calc_rules": {
             "unlimited": false,
             "cap_per_month": 100,

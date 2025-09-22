@@ -184,7 +184,7 @@ const Card = ({
             )}
             {offer.rate?.EXCHANGE && (
               <Badge variant="outline">
-                國外交易服務費
+                免國外交易服務費
                 {Math.round((offer.rate?.EXCHANGE || 0) * 1000) / 10}%
               </Badge>
             )}
