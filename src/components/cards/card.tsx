@@ -19,7 +19,7 @@ export default function Card({
 }) {
   const { card, loading, error } = useCardDetail(id);
   if (loading) {
-    return <LoadingState className={className} />;
+    return <div />;
   }
 
   if (!card) return null;
