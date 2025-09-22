@@ -1,13 +1,13 @@
+import { Suspense } from "react";
 import { TbCreditCard } from "react-icons/tb";
 import { revalidatePath } from "next/cache";
 
 import { getMyCards } from "@/app/actions/cards";
 import Card from "@/components/cards/card";
+import { LoadingCard } from "@/components/common/loading-card";
 import CreateCardDialog from "./create-card-dialog";
 
 export default async function CardsPage() {
-  const userCards = await getMyCards();
-
   async function refreshCards() {
     "use server";
     revalidatePath("/cards");
@@ -19,7 +19,17 @@ export default async function CardsPage() {
         <h1 className="text-2xl font-semibold">我的卡片</h1>
         <CreateCardDialog onCardCreated={refreshCards} size="icon" />
       </div>
+      <Suspense fallback={<LoadingCard />}>
+        <MyCardList refreshCards={refreshCards} />
+      </Suspense>
+    </div>
+  );
+}
 
+const MyCardList = async ({ refreshCards }) => {
+  const userCards = await getMyCards();
+  return (
+    <>
       {userCards.length === 0 && (
         <div className="rounded-xl bg-gray-50 py-12 text-center">
           <TbCreditCard size="36" className="inline-block" />
@@ -38,6 +48,6 @@ export default async function CardsPage() {
           />
         ))}
       </div>
-    </div>
+    </>
   );
-}
+};
