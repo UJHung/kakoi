@@ -3,8 +3,22 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+function newId() {
+  return crypto.randomUUID?.() ?? Math.random().toString(36).slice(2);
+}
+
 export default function Home() {
   const router = useRouter();
+
+  const handleStartExperience = () => {
+    // 設定 guestId cookie
+    const id = newId();
+    document.cookie = `guestId=${id}; path=/; max-age=${60 * 60 * 24 * 365 * 2}; samesite=lax`;
+
+    // 導向卡片頁面
+    router.replace("/cards");
+  };
+
   return (
     <div
       className="relative grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-sans sm:p-20"
@@ -28,9 +42,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col items-center gap-4 sm:flex-row">
           <button
-            onClick={() => {
-              router.push("/cards");
-            }}
+            onClick={handleStartExperience}
             className="bg-foreground text-background flex cursor-pointer items-center justify-center rounded-lg px-4 py-3 text-sm font-medium transition-colors hover:bg-gray-800 disabled:opacity-20 sm:px-5 sm:text-base"
           >
             立即體驗
