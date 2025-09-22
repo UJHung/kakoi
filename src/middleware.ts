@@ -3,18 +3,23 @@ import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
   const hasGuest = req.cookies.get("guestId");
+  const pathname = req.nextUrl.pathname;
   
   // 首頁重導向邏輯
-  if (req.nextUrl.pathname === "/" && hasGuest) {
-    return NextResponse.redirect(new URL("/dashboard", req.url));
+  if (pathname === "/") {
+    if (hasGuest) {
+      return NextResponse.redirect(new URL("/dashboard", req.url));
+    }
+    return NextResponse.next();
   }
 
-  // 沒有 guestId 時重導向到首頁
-  if (!hasGuest) {
+  // 對於需要認證的頁面，沒有 guestId 時重導向到首頁
+  if (!hasGuest && (pathname.startsWith("/dashboard") || 
+                   pathname.startsWith("/cards") || 
+                   pathname.startsWith("/offers"))) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
-  // 已有 cookie 時直接通過，避免不必要的 NextResponse.next()
   return NextResponse.next();
 }
 
