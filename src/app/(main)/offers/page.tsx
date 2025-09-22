@@ -1,9 +1,12 @@
-import React, { Suspense } from "react";
+import React from "react";
 
 import OffersList from "./offers-list";
 import FilterBar from "@/app/(main)/dashboard/filter-bar";
 
-export default function OffersPage() {
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+export default function Page() {
   return (
     <div className="p-5">
       <div className="rounded-lg bg-white p-5">
