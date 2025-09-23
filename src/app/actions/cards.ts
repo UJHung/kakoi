@@ -8,7 +8,7 @@ import { getOrCreateGuestProfile } from "@/lib/db/profile";
 import { CardDTO } from "../types/card";
 
 const fetchUserCardsForProfile = cache(async (profileId: string) => {
-  console.log("Actual DB fetch for profileId:", profileId);
+  // console.log("Actual DB fetch for profileId:", profileId);
   
   const { data: userCards, error } = await supabaseAdmin
     .from("UserCard")
@@ -43,7 +43,7 @@ export async function getMyCards() {
 
 export async function addCard(data: CardDTO) {
   const profile = await getOrCreateGuestProfile();
-  console.log("Using profileId:", profile.id, data);
+  // console.log("Using profileId:", profile.id, data);
 
   try {
     const { data: card, error } = await supabaseAdmin

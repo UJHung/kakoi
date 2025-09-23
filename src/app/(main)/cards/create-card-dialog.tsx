@@ -7,6 +7,7 @@ import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { LoadingNewCard } from "@/components/common/loading-card";
+import LoadingSpinner from "@/components/common/loading-spinner";
 import Card from "@/components/cards/card";
 import {
   Dialog,
@@ -15,7 +16,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { addCard, getMyCards } from "@/app/actions/cards";
-import { CardProps, CardDTO } from "@/app/types/card";
+import { CardDTO } from "@/app/types/card";
 import data from "@/data/cards.json";
 
 interface CreateCardDialogProps {
@@ -29,10 +30,10 @@ export default function CreateCardDialog({
 }: CreateCardDialogProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isPending, setIsPending] = useState(false);
   const [myCards, setMyCards] = useState<CardDTO[]>([]);
   const { watch, handleSubmit, setValue, reset } = useForm<CardDTO>();
 
-  // 將 fetchMyCards 提取為獨立函數
   const fetchMyCards = async () => {
     if (isLoading) return;
 
@@ -48,14 +49,12 @@ export default function CreateCardDialog({
   };
 
   async function onSubmit(data: CardDTO) {
+    setIsPending(true);
     try {
       await addCard({
         cardId: data.cardId,
         nickname: data.nickname,
       });
-
-      // 新增成功後立即更新本地卡片列表
-      await fetchMyCards();
 
       setIsOpen(false);
       reset();
@@ -64,6 +63,8 @@ export default function CreateCardDialog({
     } catch (error) {
       console.error("Error adding card:", error);
       toast.error("新增失敗，請重試");
+    } finally {
+      setIsPending(false);
     }
   }
 
@@ -148,8 +149,9 @@ export default function CreateCardDialog({
               type="submit"
               className="flex-1"
               size="lg"
-              disabled={!watch("cardId")}
+              disabled={!watch("cardId") || isPending}
             >
+              {isPending && <LoadingSpinner />}
               確認
             </Button>
             <Button
