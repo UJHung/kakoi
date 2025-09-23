@@ -8,8 +8,8 @@ export const revalidate = 0;
 
 export default function Page() {
   return (
-    <div className="p-5">
-      <div className="rounded-lg bg-white p-5">
+    <div className="min-h-[90vh] p-5">
+      <div className="rounded-lg bg-white p-4 sm:p-5">
         <h1 className="mb-3 text-2xl font-semibold">優惠速查</h1>
         <FilterBar />
       </div>

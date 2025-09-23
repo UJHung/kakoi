@@ -5,7 +5,18 @@ export type CardOfferProps = {
   id: string;
   name?: string;
   category: string[]; // 餐飲、海外、網購...
-  rate?: Record<string, number>; // 回饋率，例如 { general: 1, bonus: 2 }
+  rate?: {
+    [key: string]: number | undefined;
+  } | {
+    SIMPLE?: number;
+    EXCHANGE?: number;
+    BONUS?: number;
+    NEW?: number;
+    LEVEL_1?: number;
+    LEVEL_2?: number;
+    LEVEL_3?: number;
+    VIP?: number;
+  }; // 回饋率，例如 { general: 1, bonus: 2 }
   calc_rules?: Record<string, any>;
   keywords?: string[]; // 關鍵字
   note?: string; // 備註
@@ -35,11 +46,11 @@ export type CardProps = {
   links?: { offer?: string; switch?: string };
   switch?: {
     required: boolean;
-    anchor_local: string;
-    timezone: string;
-    applies_to_local: string[];
-    unit: string;
-    effective: string;
+    anchor_local?: string;
+    timezone?: string;
+    applies_to_local?: string[];
+    unit?: string;
+    effective?: string;
   };
 };
 
@@ -90,11 +101,11 @@ export type UserCardWithDetails = MyCardProps & {
   links?: { offer?: string; switch?: string };
   switch?: {
     required: boolean;
-    anchor_local: string;
-    timezone: string;
-    applies_to_local: string[];
-    unit: string;
-    effective: string;
+    anchor_local?: string;
+    timezone?: string;
+    applies_to_local?: string[];
+    unit?: string;
+    effective?: string;
   };
 };
 

@@ -21,22 +21,20 @@ export default function ExclusionDialog({
         showCloseButton={false}
       >
         <div className="flex h-full flex-col gap-6">
-          <div className="flex flex-auto flex-col gap-4">
-            <DialogTitle className="text-lg font-semibold">
-              注意事項
-            </DialogTitle>
-            <div className="max-h-[78vh] flex-auto space-y-5 overflow-y-auto">
-              {exclusions.map((excl, idx) => (
-                <div key={idx} className="space-y-2">
-                  <h3 className="text-base">{excl.path_name}</h3>
-                  <ul className="text-muted-foreground list-disc space-y-1 pl-5 text-sm">
-                    {excl.contents.map((content, cidx) => (
-                      <li key={cidx}>{content}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
+          <DialogTitle className="flex-none text-lg font-semibold">
+            注意事項
+          </DialogTitle>
+          <div className="flex-auto space-y-5 overflow-y-auto pb-2">
+            {exclusions.map((excl, idx) => (
+              <div key={idx} className="space-y-2">
+                <h3 className="text-base">{excl.path_name}</h3>
+                <ul className="text-muted-foreground list-disc space-y-1 pl-5 text-sm">
+                  {excl.contents.map((content, cidx) => (
+                    <li key={cidx}>{content}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
           <Button
             type="button"

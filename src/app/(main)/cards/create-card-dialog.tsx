@@ -6,6 +6,7 @@ import { HiPlus } from "react-icons/hi";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
+import { LoadingNewCard } from "@/components/common/loading-card";
 import Card from "@/components/cards/card";
 import {
   Dialog,
@@ -66,8 +67,8 @@ export default function CreateCardDialog({
     }
   }
 
-  const selectPreset = (card: CardProps) => {
-    setValue("cardId", card.cardId);
+  const selectPreset = (cardId: string) => {
+    setValue("cardId", cardId);
   };
 
   useEffect(() => {
@@ -86,28 +87,19 @@ export default function CreateCardDialog({
       </DialogTrigger>
 
       <DialogContent
-        className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:slide-in-from-bottom fixed top-auto right-0 bottom-0 left-1/2 mx-0 my-0 h-[85vh] max-w-full -translate-x-1/2 translate-y-0 rounded-t-xl rounded-b-none border-b-0 duration-200 ease-out"
+        className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:slide-in-from-bottom fixed top-auto right-0 bottom-0 left-1/2 mx-0 my-0 h-[95vh] max-w-full -translate-x-1/2 translate-y-0 rounded-t-xl rounded-b-none border-b-0 duration-200 ease-out"
         showCloseButton={false}
       >
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex h-full flex-col justify-between space-y-4"
+          className="flex h-full flex-col justify-between space-y-4 overflow-hidden"
         >
-          <div className="flex-col space-y-4">
-            <DialogTitle>新增卡片</DialogTitle>
-            <h3 className="text-sm font-medium">選擇卡片</h3>
+          <DialogTitle>新增卡片</DialogTitle>
+          <div className="flex-auto flex-col space-y-4 overflow-y-auto pb-2">
             {isLoading ? (
-              <div className="relative animate-pulse">
-                <div className="sm:-p-5 grid gap-4 rounded-xl border p-4 sm:grid-cols-5 sm:gap-6">
-                  <div className="h-40 rounded-xl bg-gray-100 sm:col-span-2"></div>
-                  <div className="space-y-3 sm:col-span-3">
-                    <div className="h-6 w-3/4 rounded-md bg-gray-100"></div>
-                    <div className="h-4 w-1/2 rounded-md bg-gray-100"></div>
-                  </div>
-                </div>
-              </div>
+              <LoadingNewCard />
             ) : (
-              <div className="max-h-[62vh] overflow-y-auto pr-2 pb-2">
+              <>
                 {data.cards.length > 0 && (
                   <div className="space-y-2">
                     <div className="grid gap-4">
@@ -122,7 +114,7 @@ export default function CreateCardDialog({
                           <div
                             key={index}
                             className="cursor-pointer"
-                            onClick={() => selectPreset(card)}
+                            onClick={() => selectPreset(card.cardId)}
                           >
                             <Card
                               id={card.cardId}
@@ -148,10 +140,10 @@ export default function CreateCardDialog({
                     </div>
                   </div>
                 )}
-              </div>
+              </>
             )}
           </div>
-          <div className="grid gap-3">
+          <div className="grid flex-none gap-3">
             <Button
               type="submit"
               className="flex-1"

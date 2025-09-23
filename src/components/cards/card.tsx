@@ -2,9 +2,9 @@
 
 import { Badge } from "@/components/ui/badge";
 import ImageLoader from "@/components/common/image-loader";
-import Dropdown from "./dropdown-menu";
 import { useCardDetail } from "@/hooks/use-cards";
 import { cn } from "@/lib/utils/utils";
+import Dropdown from "./dropdown-menu";
 
 export default function Card({
   id,
@@ -46,8 +46,8 @@ const CardContainer = ({
   onRefresh?: () => void;
 }) => {
   return (
-    <div className={cn("relative rounded-xl bg-white p-5 sm:p-4", className)}>
-      <div className="grid gap-4 sm:grid-cols-5 sm:gap-6">
+    <div className={cn("relative rounded-xl bg-white p-4 sm:p-5", className)}>
+      <div className="grid gap-3 sm:grid-cols-5 sm:gap-6">
         <div className="sm:col-span-2">
           <ImageLoader
             src={card.cardImage || "/cards/default-card.png"}
@@ -84,25 +84,6 @@ const CardContainer = ({
           />
         </div>
       )}
-    </div>
-  );
-};
-
-const LoadingState = (className) => {
-  return (
-    <div
-      className={cn(
-        "relative animate-pulse rounded-xl bg-white p-5 sm:p-4",
-        className,
-      )}
-    >
-      <div className="grid gap-4 sm:grid-cols-5 sm:gap-6">
-        <div className="h-40 rounded-xl bg-gray-100 sm:col-span-2"></div>
-        <div className="space-y-3 sm:col-span-3">
-          <div className="h-6 w-3/4 rounded-md bg-gray-100"></div>
-          <div className="h-4 w-1/2 rounded-md bg-gray-100"></div>
-        </div>
-      </div>
     </div>
   );
 };

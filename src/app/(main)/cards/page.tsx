@@ -17,7 +17,7 @@ export default async function Page() {
   }
 
   return (
-    <div className="space-y-6 p-5">
+    <div className="min-h-[90vh] space-y-5 p-5 sm:space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold">我的卡片</h1>
         <CreateCardDialog onCardCreated={refreshCards} size="icon" />
@@ -36,7 +36,7 @@ const MyCardList = async ({ refreshCards }) => {
       {userCards.length === 0 && (
         <div className="rounded-xl bg-gray-50 py-12 text-center">
           <TbCreditCard size="36" className="inline-block" />
-          <p className="py-3">還沒有卡片，先新增一張吧！</p>
+          <p className="py-3">尚未新增任何卡片</p>
           <CreateCardDialog onCardCreated={refreshCards} />
         </div>
       )}

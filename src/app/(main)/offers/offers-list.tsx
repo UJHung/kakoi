@@ -14,7 +14,6 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import ExclusionDialog from "@/app/(main)/offers/exclusion-dialog";
-import FilterBar from "@/app/(main)/dashboard/filter-bar";
 import { useOffers } from "@/hooks/use-offers";
 import { useDisclosure } from "@/hooks/use-disclosure";
 
@@ -164,7 +163,7 @@ const Card = ({
           )}
         </div>
         <div className="sm:col-span-3">
-          <div className="mb-1 flex flex-wrap gap-1.5">
+          <div className="mb-2 flex flex-wrap gap-1.5">
             <Badge variant="orange">
               {offer.name}{" "}
               {Math.round(
@@ -175,6 +174,17 @@ const Card = ({
             {offer.rate?.NEW && (
               <Badge variant="amber">
                 新戶加碼 {Math.round((offer.rate?.NEW || 0) * 1000) / 10}%
+              </Badge>
+            )}
+            {offer.rate?.BONUS && (
+              <Badge variant="amber">
+                加碼 {Math.round((offer.rate?.BONUS || 0) * 1000) / 10}%
+              </Badge>
+            )}
+            {offer.rate?.EXCHANGE && (
+              <Badge variant="outline">
+                免國外交易服務費
+                {Math.round((offer.rate?.EXCHANGE || 0) * 1000) / 10}%
               </Badge>
             )}
             <Badge variant="sky">
