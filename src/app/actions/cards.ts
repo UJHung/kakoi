@@ -1,29 +1,40 @@
 "use server";
 
+import { cache } from "react";
+import { cookies } from "next/headers";
+
 import { supabaseAdmin } from "@/lib/supabase/server";
 import { getOrCreateGuestProfile } from "@/lib/db/profile";
 import { CardDTO } from "../types/card";
 
-export async function getMyCards(profileId?: string) {
-  try {
-    let actualProfileId = profileId;
+const fetchUserCardsForProfile = cache(async (profileId: string) => {
+  // console.log("Actual DB fetch for profileId:", profileId);
+  
+  const { data: userCards, error } = await supabaseAdmin
+    .from("UserCard")
+    .select('cardId')
+    .eq("profileId", profileId);
 
-    if (!actualProfileId) {
+  if (error) {
+    console.error("Error fetching user cards:", error);
+    return [];
+  }
+
+  return userCards || [];
+});
+
+export async function getMyCards() {
+  try {
+    const cookieStore = await cookies();
+    const guestId = cookieStore.get("guestId")?.value;
+    let actualProfileId = guestId;
+
+    if (!guestId) {
       const profile = await getOrCreateGuestProfile();
       actualProfileId = profile.id;
     }
 
-    const { data: userCards, error } = await supabaseAdmin
-      .from("UserCard")
-      .select('cardId')
-      .eq("profileId", actualProfileId);
-
-    if (error) {
-      console.error("Error fetching user cards:", error);
-      return [];
-    }
-
-    return userCards || [];
+    return await fetchUserCardsForProfile(actualProfileId as string);
   } catch (error) {
     console.error("Error in getMyCards:", error);
     return [];
@@ -32,7 +43,7 @@ export async function getMyCards(profileId?: string) {
 
 export async function addCard(data: CardDTO) {
   const profile = await getOrCreateGuestProfile();
-  console.log("Using profileId:", profile.id, data);
+  // console.log("Using profileId:", profile.id, data);
 
   try {
     const { data: card, error } = await supabaseAdmin

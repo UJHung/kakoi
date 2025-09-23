@@ -1,8 +1,6 @@
 import { MdAddCard } from "react-icons/md";
-import { HiSpeakerphone } from "react-icons/hi";
 import { RiSettingsFill } from "react-icons/ri";
 import { HiPlus } from "react-icons/hi";
-
 import Link from "next/link";
 
 import { getMyCards } from "@/app/actions/cards";
