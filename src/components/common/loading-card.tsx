@@ -1,8 +1,8 @@
 export const LoadingSmallCards = () => {
   return (
     <div className="relative grid animate-pulse grid-cols-3 gap-4 md:grid-cols-4">
-      <div className="h-[85px] rounded-lg bg-slate-50" />
-      <div className="h-[85px] rounded-lg bg-slate-50" />
+      <div className="h-[60px] rounded-lg bg-slate-50 sm:h-[85px]" />
+      <div className="h-[60px] rounded-lg bg-slate-50 sm:h-[85px]" />
     </div>
   );
 };
