@@ -14,7 +14,6 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import ExclusionDialog from "@/app/(main)/offers/exclusion-dialog";
-import FilterBar from "@/app/(main)/dashboard/filter-bar";
 import { useOffers } from "@/hooks/use-offers";
 import { useDisclosure } from "@/hooks/use-disclosure";
 

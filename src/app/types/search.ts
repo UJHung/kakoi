@@ -56,6 +56,19 @@ export async function searchByCategory(categories: string[]) {
   return results;
 }
 
+export async function getAllCards() {
+  const results: { card: CardProps; offer: OfferProps }[] = [];
+  const data = await loadCardsData();
+
+  for (const card of data.cards) {
+    const allOffers = [...(card.offers || []), ...(card.other_benefits || [])];
+    for (const offer of allOffers) {
+      results.push({ card, offer });
+    }
+  }
+  return results;
+}
+
 // Compute the best card+offer given a txn + your known Level for each card
 export function bestCardFor(
   data: CardsDataset,

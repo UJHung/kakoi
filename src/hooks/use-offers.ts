@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { searchByKeyword, searchByCategory } from "@/app/types/search";
+import { searchByKeyword, searchByCategory, getAllCards } from "@/app/types/search";
 import { getMyCards } from "@/app/actions/cards";
 import { getCategories } from "@/lib/utils/card-data";
 
@@ -65,6 +65,8 @@ export function useOffers(query?: string, categorySlug?: string) {
           searchResults = await searchByCategory([categorySlug]);
         } else if (query && query.trim() !== "") {
           searchResults = await searchByKeyword(query);
+        } else {
+          searchResults = await getAllCards()
         }
 
         // 標記用戶擁有的卡片，並依此排序
@@ -72,7 +74,7 @@ export function useOffers(query?: string, categorySlug?: string) {
           ...result,
           userOwned: userCardIds.includes(result.card.cardId),
         }));
-
+        
         // 排序：用戶擁有的卡片優先顯示
         processedResults.sort((a, b) => {
           if (a.userOwned && !b.userOwned) return -1;
