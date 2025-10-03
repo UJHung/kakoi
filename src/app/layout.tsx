@@ -13,8 +13,9 @@ const lineSeed = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "KAKOi",
-  description: "卡在KAKOi，優惠都可以",
+  title: "KAKOi｜我的信用卡優惠管理助手",
+  description:
+    "KAKOi 專注於『我的信用卡』，幫你整理銀行優惠，不再錯過回饋。快速查詢、清楚比較，讓你用對卡、省時間、省金錢。",
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://kakoi.app"),
   openGraph: {
     images: ["/image-seo.png"],
