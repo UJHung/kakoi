@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { TbCreditCard } from "react-icons/tb";
+import { Metadata } from "next";
 import { revalidatePath } from "next/cache";
 
 import { getMyCards } from "@/app/actions/cards";
@@ -9,6 +10,10 @@ import CreateCardDialog from "./create-card-dialog";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+export const metadata: Metadata = {
+  title: "我的卡片",
+};
 
 export default async function Page() {
   async function refreshCards() {
