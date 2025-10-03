@@ -36,22 +36,23 @@ export default function Home() {
         <Image
           className="dark:invert"
           src="/logo-vertical.svg"
-          alt="Kaku logo"
+          alt="KAKOi"
           width={200}
           height={200}
           priority
         />
-        <div className="mb-6 text-center text-lg font-semibold">
+        <h1 className="mb-2 text-center text-lg font-semibold">
           卡在KAKOi，優惠都可以
-        </div>
+        </h1>
+        <h2 className="mb-6">整理銀行優惠｜快速查詢｜不再錯過回饋</h2>
         <div className="flex flex-col items-center gap-4 sm:flex-row">
           <button
             onClick={handleStartExperience}
             disabled={isLoading}
-            className="bg-foreground text-background flex cursor-pointer items-center justify-center rounded-lg px-4 py-3 text-sm font-medium transition-colors hover:bg-gray-800 disabled:opacity-50 sm:px-5 sm:text-base"
+            className="bg-foreground text-background flex cursor-pointer items-center justify-center rounded-xl px-6 py-4 text-lg font-medium transition-all hover:scale-95 hover:bg-black/70 disabled:opacity-50 sm:rounded-lg sm:text-base"
           >
             {isLoading && (
-              <svg className="mr-3 h-4 w-4 animate-spin" viewBox="0 0 24 24">
+              <svg className="mr-3 h-5 w-5 animate-spin" viewBox="0 0 24 24">
                 <circle
                   className="opacity-25"
                   cx="12"
